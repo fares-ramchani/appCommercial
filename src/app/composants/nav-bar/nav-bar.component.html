@@ -1,0 +1,26 @@
+<div class="navBar" >
+    <div class="partier1">
+        <div (click)=" closepopup()" class="button-777 logoCollepse">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+              </svg>
+        </div>
+        <div class="logoApp">
+               <img class="img1" src="../assets/images/logo.png" alt=""> 
+        </div>
+        <h4 style="font-weight: bold; color: rgba(0, 0, 0, 0.655)"> <span style="color: rgb(0, 68, 255);">A</span>pp <span style="color: rgb(0, 68, 255);">Co</span>mmercial</h4>
+
+    </div>
+    <div class="partier2">
+        <img class="img2" src="../assets/images/iconperson.png" alt="">
+        <a routerLink="/Menu/Burgers" class="button-77" role="button">
+            <div style="display: flex; justify-content: center; align-items: center;">
+                <img class="img3" src="../assets/images/connexionIcon.png" alt="">
+                <h6>Connecxion</h6>
+            </div>
+        </a>
+
+    </div>
+
+</div>
+<app-side-barnavigatio #sideBar [ngClass]="showcomposantSideBarNavigation ? 'sideNav':'sideNavnav-collapsed'"></app-side-barnavigatio>

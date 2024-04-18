@@ -1,0 +1,127 @@
+.partier {
+margin-top: 8px;
+    width: 200px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  
+  }
+  
+  img {
+    width: 35px;
+    height: 35px;
+    margin-top: -5%;
+  
+  
+  }
+  .img{
+    width: 40px;
+    height: 40px;
+    margin-top: -5%;
+    filter: none;
+  }
+  
+  h6 {
+    font-family: Eina01, sans-serif;
+    font-size: 20px;
+    margin-left: 4%;
+  
+  }
+  
+  .button-77 {
+    max-height: 30px;
+    align-items: center;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: initial;
+    background-image: none;
+    border-style: none;
+    box-sizing: border-box;
+    color:#090600;
+    cursor: pointer;
+    display: inline-block;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: center;
+    line-height: 24px;
+    margin: 0;
+    min-height: 64px;
+    outline: none;
+    overflow: visible;
+    padding: 19px 26px;
+    pointer-events: auto;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: auto;
+    word-break: keep-all;
+    z-index: 0;
+  }
+
+  
+  
+  
+  .button-77:before,
+  .button-77:after {
+    border-radius: 80px;
+  }
+  
+  .button-77:before {
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+  }
+  
+  .button-77:after {
+
+    background-color: rgba(255, 255, 255, 0.759);
+    content: "";
+    bottom: 4px;
+    content: "";
+    display: block;
+    left: 4px;
+    overflow: hidden;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    transition: all 100ms ease-out;
+    z-index: -1;
+  }
+  
+  
+  .button-77:hover:not(:disabled):after {
+    bottom: 0;
+
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    transition-timing-function: ease-in;
+  }
+  
+
+  
+  .button-77:active:not(:disabled):after {
+    background-color: #4F9EF8;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    top: 4px;
+  }
+  
+  .button-77:disabled {
+    cursor: default;
+    opacity: .24;
+  }

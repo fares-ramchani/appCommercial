@@ -1,0 +1,57 @@
+<app-nav-bar></app-nav-bar>
+<form [formGroup]="formfournisseurComplete" novalidate>
+<div (click)="closepopup()" style="display: flex;width: 100%; background-color: #70b1fb;">
+    <div style="display: flex;flex-direction: column; width: 87%;  ">
+        <div style="display: flex; width: 100%; ">
+            
+            <div style="width: 15%;">
+                <label for="exampleFormControlInput1" class="form-label">code</label><br>
+                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="code">
+            </div>
+            <div style="width: 40%;">
+                <label for="exampleFormControlInput1" class="form-label">Raison Sociale/Nom</label><br>
+                <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="companyName">
+            </div>
+            <div style="width: 15%;">
+                <label for="exampleFormControlInput1" class="form-label">Abréviation</label><br>
+                <input type="text" class="form-control" id="exampleFormControlInput1"formControlName="abbreviation">
+            </div>
+
+            <div style="width: 15%;">
+                <label for="exampleFormControlInput1" class="form-label">Crédit Maximal</label><br>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="0.000" formControlName="maxCredit">
+            </div>
+            <div style="width: 15%;">
+
+                <label for="exampleFormControlInput1" class="form-label">Echéanciers max</label><br>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="0.000" formControlName="maxTerms">
+            </div>
+       
+
+        </div>
+        <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; margin-top: 8px;">
+                <a class="btn btn-primary" routerLink="/RegistrationFournisseur/RegistrationFournisseurFiche">Fiche</a>
+                <a routerLink="/RegistrationFournisseur/RegistrationFournisseurMemo" class="btn btn-primary"
+                    style="margin-left: 6px;">Mémo</a>
+                <a class="btn btn-primary" style="margin-left: 6px;"
+                    routerLink="/RegistrationFournisseur/RegistrationFournisseurAutres">Autres</a>
+
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" formControlName="inProgress">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Tenic compte des en Cours
+                </label>
+            </div>
+        </div>
+        <div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div style="width: 10%; ">
+        <app-side-bar-option></app-side-bar-option>
+    </div>
+
+</div>
+</form>

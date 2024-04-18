@@ -1,0 +1,97 @@
+<div id="container">
+  <div mat-dialog-actions
+    style="width: 80%;display: flex;justify-content: space-between;height: 26px; background: linear-gradient(135deg, #4a7ff1, #74c0f9); ; position: fixed;">
+    <div class="title" style="margin-left: 4px;">fiche de fournisseur (supprimer)</div>
+    <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close" (click)="closepopup()"></button>
+  </div>
+  <div style="margin-top: 25px;">
+    <ng-container *ngIf="fournisseurState$ | async as state" [ngSwitch]="state.dataState">
+      <ng-container *ngSwitchCase="fournisseurStateEnume.INITIAL">
+        ksdcksdbckhb
+      </ng-container>
+      <div style="margin-top: 280px; display: flex; justify-content: center; align-items: center;" *ngSwitchCase="fournisseurStateEnume.LOADING">
+        <span 
+        class="loader"></span>
+      </div>
+      <ng-container *ngSwitchCase="fournisseurStateEnume.LOADED">
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0">liste de founisseur</h3>
+                <input class="form-control" type="text" placeholder="search" [(ngModel)]="searchText">
+              </div>
+              <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">code</th>
+                      <th scope="col">companyName</th>
+                      <th scope="col">abbreviation</th>
+                      <th scope="col">maxCredit</th>
+                      <th scope="col">maxTerms</th>
+                      <th scope="col">inProgress</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor=" let Client of state.fournisseur">
+                      <th scope="row">
+                        <div class="media align-items-center">
+                          <div class="media-body">
+                            {{Client.code}}
+                          </div>
+                        </div>
+                      </th>
+                      <td>
+                        {{Client.companyName}}
+                      </td>
+                      <td>
+                        {{Client.abbreviation}}
+                      </td>
+                      <td>
+                        <div class="avatar-group">
+                          {{Client.maxCredit}}
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                      <td>{{Client.maxTerms}}</td>
+              </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+      
+              <td>{{Client.inProgress}}</td>
+            </div>
+            </td>
+      
+            <td>
+              <div class="d-flex align-items-center">
+                <button class="btn btn-light">
+                  <img src="../assets/images/supprimer.png" alt="">
+                </button>
+              </div>
+            </td>
+            </tr>
+            <tr>
+              </tbody>
+              </table>
+          </div>
+          <div>
+          </div>
+        </div>
+      </div>
+      </div>
+      </ng-container>
+    </ng-container>
+
+  </div>
+
+
+ 
+
+
+
+<!-- Dark table -->
+
+

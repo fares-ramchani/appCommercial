@@ -1,0 +1,137 @@
+<body>
+    <ng-container *ngIf="loginState$ | async as state" [ngSwitch]="state.dataState">
+        <ng-container *ngSwitchCase="loginStateEnume.INITIAL">
+            <div class="container" id="container">
+                <div class="form-container sign-up-container">
+
+                </div>
+                <div class="form-container sign-in-container">
+                    <form role="form" [formGroup]="formLogin" (ngSubmit)="login()">
+                        <h1>Sign in</h1>
+                        <div class="social-container">
+                            <a href="#" class="social"><img class="img1" src="../assets/images/logo.png" alt=""> </a>
+                            <div class="text-danger">{{messageerror}}</div>
+                        </div>
+                        <span>or use your account</span>
+                        <input type="text" placeholder="username" formControlName="username" required />
+                        <small *ngIf="formLogin.controls['username'].errors && formLogin.controls['username'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('username',formLogin.controls['username'].errors)}}</small>
+                        <span class="text-danger">{{messagee}}</span>
+                        <input type="password" placeholder="password" formControlName="password" required />
+                        <small *ngIf="formLogin.controls['password'].errors && formLogin.controls['password'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('password',formLogin.controls['password'].errors)}}</small>
+                        <a href="#">Forgot your password?</a>
+                        <button [disabled]="formLogin.invalid">Sign In</button>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Enter your personal details and start journey with us</p>
+                            <button class="ghost" id="signUp"><a routerLink="/registration" routerLinkActive="active"
+                                    style="color: aliceblue;">sing UP Client</a></button><br>
+                            <button class="ghost" id="signUp"><a routerLink="/registrationProfissionnel"
+                                    routerLinkActive="active" style="color: aliceblue;">sing UP
+                                    profissioneel</a></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="loginStateEnume.LOADING">
+            <div class="container" id="container">
+                <div class="form-container sign-up-container">
+
+                </div>
+                <div class="form-container sign-in-container">
+                    <form role="form" [formGroup]="formLogin" (ngSubmit)="login()">
+                        <h1>Sign in</h1>
+                        <div class="social-container">
+                            <a href="#" class="social"><img class="img1" src="../assets/images/logo.png" alt=""> </a>
+                            <div class="text-danger">{{messageerror}}</div>
+                        </div>
+                        <span>or use your account</span>
+                        <input type="text" placeholder="username" formControlName="username" required />
+                        <small *ngIf="formLogin.controls['username'].errors && formLogin.controls['username'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('username',formLogin.controls['username'].errors)}}</small>
+                        <span class="text-danger">{{messagee}}</span>
+                        <input type="password" placeholder="password" formControlName="password" required />
+                        <small *ngIf="formLogin.controls['password'].errors && formLogin.controls['password'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('password',formLogin.controls['password'].errors)}}</small>
+                        <a href="#">Forgot your password?</a>
+                        <button style="display: flex;align-items: center; justify-content: center;" [disabled]="formLogin.invalid"> <span
+                                class="loader"></span>
+                        </button>
+
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Enter your personal details and start journey with us</p>
+                            <button class="ghost" id="signUp"><a routerLink="/registration" routerLinkActive="active"
+                                    style="color: aliceblue;">sing UP Client</a></button><br>
+                            <button class="ghost" id="signUp"><a routerLink="/registrationProfissionnel"
+                                    routerLinkActive="active" style="color: aliceblue;">sing UP
+                                    profissioneel</a></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="loginStateEnume.ERROR">
+            <div class="container" id="container">
+                <div class="form-container sign-up-container">
+
+                </div>
+                <div class="form-container sign-in-container">
+                    <form role="form" [formGroup]="formLogin" (ngSubmit)="login()">
+                        <h1>Sign in</h1>
+                        <div class="social-container">
+                            <a href="#" class="social"><img class="img1" src="../assets/images/logo.png" alt=""> </a>
+                            <div class="text-danger">{{state.errorMessage | json}}</div>
+                        </div>
+                        <span>or use your account</span>
+                        <input type="text" placeholder="username" formControlName="username" required />
+                        <small *ngIf="formLogin.controls['username'].errors && formLogin.controls['username'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('username',formLogin.controls['username'].errors)}}</small>
+                        <span class="text-danger">{{messagee}}</span>
+                        <input type="password" placeholder="password" formControlName="password" required />
+                        <small *ngIf="formLogin.controls['password'].errors && formLogin.controls['password'].touched"
+                            class="text-danger">
+                            {{getErrorsMessage('password',formLogin.controls['password'].errors)}}</small>
+                        <a href="#">Forgot your password?</a>
+                        <button [disabled]="formLogin.invalid">Sign In</button>
+
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Enter your personal details and start journey with us</p>
+                            <button class="ghost" id="signUp"><a routerLink="/registration" routerLinkActive="active"
+                                    style="color: aliceblue;">sing UP Client</a></button><br>
+                            <button class="ghost" id="signUp"><a routerLink="/registrationProfissionnel"
+                                    routerLinkActive="active" style="color: aliceblue;">sing UP
+                                    profissioneel</a></button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </ng-container>
+
+
+
+</body>

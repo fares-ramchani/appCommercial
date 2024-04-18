@@ -1,0 +1,136 @@
+<div id="container">
+    <div mat-dialog-actions style="width: 79%;display: flex;justify-content: space-between;height: 26px; background: linear-gradient(135deg, #4a7ff1, #74c0f9); ; position: fixed;">
+        <div class="title" style="margin-left: 4px;">fiche de fournisseur (impression)</div>
+        <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close" (click)="closepopup()"></button>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <form novalidate>
+                <div class="user-details">
+                    <div class="input-box" style="width: 20%;">
+                        <span class="details">Du</span>
+                        <input type="text"  placeholder="code" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 60%;">
+                        <span class="details">Raison Sociale/Nom</span>
+                        <input type="text"  formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+                    </div>
+                    <div class="input-box" style="width: 19%;">
+                        <select  style="width: 100%;"class="select" aria-label="Default select example" formControlName="domaine" >
+                          <option  disabled hidden selected value="">Ordre de trie</option>
+                        </select>
+                      </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box" style="width: 20%;">
+                        <span class="details">Au</span>
+                        <input type="text"  placeholder="code" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 55%;">
+                        <span class="details"></span>
+                        <input type="text"   formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);margin-top: 24px;">
+                    </div>
+                        <div class="input-box" style="width: 24%; display: flex; align-items: center; margin-top: 30px; ">
+                                <input style="width: 10%; margin-left: 80px;" type="checkbox" placeholder="Enter ton nom" formControlName="nom" required>
+                                <span class="details" style="margin-left: 20px;" >Exonération CICT</span>
+                        </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box" style="width: 39%;">
+                        <span class="details">Agent</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 60%;">
+                        <span class="details">Nom</span>
+                        <input type="text" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+                    </div>
+                   
+                </div>
+                <div class="user-details" style="width: 70%;">
+                    <div class="input-box" style="width: 50%;">
+                        <span class="details">Ville</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 30%;">
+                        <span class="details">Code Postale</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                   
+                </div>
+                 <div class="user-details" style="width: 100%;">
+                    <div class="user-details" style="width: 70%;">
+                        <div class="input-box" style="width: 50%;">
+                            <span class="details">Pays</span>
+                            <input type="text"  placeholder="code" formControlName="nom" required>
+                        </div>
+                        <div class="input-box" style="width: 30%;">
+                            <span class="details">Type</span>
+                            <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                        </div>
+                    </div>
+                    <div class="user-details" style="width: 30%;">
+                        <div class="input-box" >
+                            <select style="width: 180px; margin-left: 120px;" class="select" aria-label="Default select example" formControlName="domaine" >
+                              <option  disabled hidden selected value="">Model</option>
+                            </select>
+                          </div>
+                    </div>
+                  
+                </div>
+                <div class="user-details" style="width: 70%;">
+                    <div class="input-box" style="width: 50%;">
+                        <span class="details">Activité</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 30%;">
+                        <span class="details">Nature</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                   
+                </div>
+                <div class="user-details" style="width: 70%;">
+                    <div class="input-box" style="width: 50%;">
+                        <span class="details">Paiement</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                    <div class="input-box" style="width: 30%;">
+                        <span class="details">Banque</span>
+                        <input type="text"  placeholder="Enter ton nom" formControlName="nom" required>
+                    </div>
+                   
+                </div>
+                <div class="user-details" style="width: 70%;">
+                    <div class="input-box" style="width: 50%;">
+                        <select  style="width: 100%;"class="select" aria-label="Default select example" formControlName="domaine" >
+                          <option  disabled hidden selected value="">Assujetti a la TVA</option>
+                        </select>
+                      </div>
+                    <div class="input-box" style="width: 30%;" >
+                        <select  style="width: 100%;"class="select" aria-label="Default select example" formControlName="domaine" >
+                          <option  disabled hidden selected value="">Bloquer</option>
+                        </select>
+                      </div>
+                   
+                </div>
+                <div style="width: 100%; display: flex; justify-content: end;">
+                    <a class="button-77" role="button" >
+                        <div (click)="closepopup()" style="display: flex; justify-content: center; align-items: center;">
+                            <img src="../assets/images/imprimer.png" alt="">
+                            <h6>Imprimer</h6>
+                        </div>
+                    </a>
+                    <a class="button-77" role="button" >
+                        <div (click)="closepopup()" style="display: flex; justify-content: center; align-items: center;">
+                            <img src="../assets/images/quitter.png" alt="">
+                            <h6>Quitter</h6>
+                        </div>
+                    </a>
+                </div>
+                
+              
+            </form>
+        </div>
+    </div>
+
+</div>

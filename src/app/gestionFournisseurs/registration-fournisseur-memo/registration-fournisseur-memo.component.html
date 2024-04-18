@@ -1,0 +1,95 @@
+ <div class="container">
+  <div class="content">
+    <form [formGroup]="formLogin" novalidate>
+      <div class="user-details">
+          <div class="input-box" style="width: 100%;">
+            <span class="details">Note</span>
+              <textarea name="" id="" cols="156" rows="13"></textarea>
+          </div>
+        </div>
+        <div class="user-details" style="width: 101.5%;">
+          <div class="input-box" style="width:100%">
+              <span class="details">Observations</span>
+              <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+            </div>
+        </div>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Utilisateur</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+          </div>
+          <div class="input-box">
+              <select class="select" style="width: 100%;" aria-label="Default select example" formControlName="domaine" >
+                <option  disabled hidden selected value="">Sélectionnez Prix </option>
+              </select>
+            </div>
+          <div class="input-box">
+            <span class="details">Taux</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+          </div>
+        </div>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Poste</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+          </div>
+          <div class="input-box">
+              <span class="details">Tarif Famille</span>
+              <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+            </div>
+          <div class="input-box">
+            <span class="details">Remise 1</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+          </div>
+        </div>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Date</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+          </div>
+          <div class="input-box">
+              <span class="details">Tarif Article</span>
+              <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+            </div>
+          <div class="input-box">
+            <span class="details">Remise 2</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+          </div>
+        </div>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Heure</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+          </div>
+        
+          <div class="input-box">
+            <span class="details">Remise 3</span>
+            <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
+          </div>
+        </div>
+       
+    </form>
+  </div>
+</div>
+<app-imprimer *ngIf="showcomposantImprimer"></app-imprimer>
+<app-suprimer-fournisseur *ngIf="showcomposantsupprimer"></app-suprimer-fournisseur>
+<!-- <div class="input-box">
+    <select class="select" aria-label="Default select example" formControlName="domaine" >
+      <option  disabled hidden selected value="">Sélectionnez un domaine</option>
+    </select>
+  </div>
+  <div class="input-box">
+    <span class="details">photo</span>
+    <input type="file" placeholder="insirer un photo"  >
+  </div>
+</div> -->
+<!-- <div class="input-box">
+    <select class="select" aria-label="Default select example" formControlName="domaine" >
+      <option  disabled hidden selected value="">Sélectionnez un domaine</option>
+    </select>
+  </div>
+  <div class="input-box">
+    <span class="details">photo</span>
+    <input type="file" placeholder="insirer un photo"  >
+  </div>
+</div> -->

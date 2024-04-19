@@ -27,7 +27,6 @@
 #container{
     width: 80%;
     height: 90vh;
-    box-shadow: 5px 5px 6px #ccc;
     margin-left: -15%;
     border-radius: 5px;
     background-color: #c3dfff;
@@ -481,8 +480,8 @@
         opacity: .24;
       }
       .loader {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         border: 5px solid #FFF;
         border-bottom-color:#3c97bf;
         border-radius: 50%;

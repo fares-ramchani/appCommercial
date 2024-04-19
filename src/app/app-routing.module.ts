@@ -6,9 +6,11 @@ import { RegistrationFournisseurFicheComponent } from './gestionFournisseurs/reg
 import { RegistrationFournisseurMemoComponent } from './gestionFournisseurs/registration-fournisseur-memo/registration-fournisseur-memo.component';
 import { NavBarComponent } from './composants/nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './guards/guard-authentification.guard';
 
 const routes: Routes = [
-  {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent,children:[
+  {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent,canActivate:[AuthGuard]
+  ,children:[
     {path :"RegistrationFournisseurAutres" , component: RegistrationFournisseurAutresComponent},
     {path :"RegistrationFournisseurFiche" , component: RegistrationFournisseurFicheComponent},
     {path :"RegistrationFournisseurMemo" , component: RegistrationFournisseurMemoComponent},

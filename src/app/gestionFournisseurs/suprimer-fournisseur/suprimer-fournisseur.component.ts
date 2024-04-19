@@ -5,7 +5,7 @@ import { fournisseurState, fournisseurStateEnume } from 'src/app/ngrx/ngrxfourni
 import { ServicefournisseurService } from 'src/app/services/servicefournisseur.service';
 import { ShowComposantsurprimmerFornisseurService } from 'src/app/services/show-composantsurprimmer-fornisseur.service';
 import { Store } from '@ngrx/store';
-import { GetAllfournisseurActions } from 'src/app/ngrx/ngrxfournisseur/fournisseur.actions';
+import { DeletefournisseursActions, GetAllfournisseurActions } from 'src/app/ngrx/ngrxfournisseur/fournisseur.actions';
 @Component({
   selector: 'app-suprimer-fournisseur',
   templateUrl: './suprimer-fournisseur.component.html',
@@ -15,7 +15,7 @@ export class SuprimerFournisseurComponent {
   fournisseurState$:Observable<fournisseurState> | null=null;
   readonly fournisseurStateEnume=fournisseurStateEnume;
   fournisseur : Array<any> = [];
-  paginationParamter:paginationParamter={perPage:2,page:1}
+  paginationParamter:paginationParamter={perPage:6,page:1}
   constructor(private store:Store<any>,private ServicefournisseurService:ServicefournisseurService,private ShowComposantsurprimmerFornisseurService:ShowComposantsurprimmerFornisseurService){}
   ngOnInit() {
     this.getfournisseurParpagination()
@@ -32,5 +32,17 @@ export class SuprimerFournisseurComponent {
 
     this.store.dispatch(new GetAllfournisseurActions(this.paginationParamter));
   }
+
+
+  
+  deleteFournisseurByCode(codeFournisseur:number){
+    if(confirm("Êtes-vous sûr de supprimer cette borne ?")){
+    
+        this.store.dispatch(new DeletefournisseursActions(codeFournisseur))
+      }
+      
+    }
+    
+
   searchText=""
 }

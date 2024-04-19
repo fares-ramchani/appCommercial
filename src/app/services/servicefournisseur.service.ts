@@ -83,4 +83,7 @@ export class ServicefournisseurService {
     return this.http.post("http://localhost:8000/management/logged-in-user/get-suppliers-by-pagination",paginationParamter);
 
   }
+  public deletefournisseurByCode(codeFournisseur:number):Observable<any>{
+    return this.http.delete<any>("http://localhost:8000/management/logged-in-user/delete-supplier/"+codeFournisseur);
+  }
 }

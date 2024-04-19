@@ -2,9 +2,10 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Observable, catchError, map, mergeMap, of } from "rxjs";
 import { ServicefournisseurService } from "src/app/services/servicefournisseur.service";
-import { GetAllfournisseurActions, 
+import { DeletefournisseurActionsError, DeletefournisseursActions, GetAllfournisseurActions, 
     GetAllfournisseurActionsError, 
     GetAllfournisseurActionsSuccess, 
+    fournisseurActions, 
     fournisseurActionsTypes 
 } from "./fournisseur.actions";
 
@@ -29,5 +30,19 @@ export class fournisseurEffect {
             })
         )
         );
+        DeleteFournisseurEffect:Observable<fournisseurActions>=createEffect(()=>
+            this.effectActions.pipe(
+                ofType(fournisseurActionsTypes.delete_fournisseur),
+                mergeMap((action:DeletefournisseursActions)=>{
+                    return this.serviceFournisseurService.deletefournisseurByCode(action.payload).pipe(
+                    
+                        map((bornes)=> new GetAllfournisseurActions(bornes)),
+                        catchError((err)=>of(new DeletefournisseurActionsError(err.message)))
+                        
+                    )
+            
+                })
+            )
+            );
     }
 

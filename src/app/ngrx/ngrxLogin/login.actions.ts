@@ -1,6 +1,6 @@
 import { Router } from "@angular/router";
 import { Action } from "@ngrx/store";
-import { user } from "src/app/model/user.model";
+import { usere } from "src/app/model/user.model";
 export enum loginActionsTypes{
     login_user="[login] login user",
     login_user_Succeess="[login] login user Success",
@@ -14,7 +14,7 @@ export class  login_userActions implements Action{
 }
 export class  login_userActionsSuccess implements Action{
     type: loginActionsTypes=loginActionsTypes. login_user_Succeess;
-    constructor(public payload:user){
+    constructor(public payload:usere){
 
     }
 }

@@ -4,11 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { loginUser } from '../model/loginUser.model';
-import { user } from '../model/user.model';
 import { Observable, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { loginState, loginStateEnume } from '../ngrx/ngrxLogin/login.reducer';
 import { login_userActions } from '../ngrx/ngrxLogin/login.actions';
+import { usere } from '../model/user.model';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +22,7 @@ export class LoginComponent {
   formLogin!:FormGroup;
   message :any=localStorage.getItem('message')
   messagee: any;
-  user!:user;
+  user!:usere;
   messageerror:string=""
   
   constructor (private store:Store<any>,private httpClient: HttpClient,private fb : FormBuilder ,private ServiceloginService : LoginService,private router : Router){
@@ -41,6 +41,7 @@ export class LoginComponent {
   login() {
     let userlogin: loginUser = this.formLogin.value;
     this.store.dispatch(new login_userActions(userlogin));
+    this.ServiceloginService.connecter();
    
   }
 

@@ -1,6 +1,6 @@
 import { userdaittails } from "./userdaittails.model"
 
-export interface user{
+export interface usere{
     msg : string,
     success : boolean
     data:userdaittails

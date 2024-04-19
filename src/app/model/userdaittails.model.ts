@@ -3,6 +3,7 @@ export interface userdaittails{
     _id:string
     username:string
     password:string
+    user:any
     role:string
     token:string
    }

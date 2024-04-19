@@ -9,7 +9,7 @@
       <ng-container *ngSwitchCase="fournisseurStateEnume.INITIAL">
         ksdcksdbckhb
       </ng-container>
-      <div style="margin-top: 280px; display: flex; justify-content: center; align-items: center;" *ngSwitchCase="fournisseurStateEnume.LOADING">
+      <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;" *ngSwitchCase="fournisseurStateEnume.LOADING">
         <span 
         class="loader"></span>
       </div>
@@ -67,7 +67,7 @@
       
             <td>
               <div class="d-flex align-items-center">
-                <button class="btn btn-light">
+                <button class="btn btn-light" (click)="deleteFournisseurByCode(Client.code)">
                   <img src="../assets/images/supprimer.png" alt="">
                 </button>
               </div>

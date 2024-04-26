@@ -1,0 +1,998 @@
+<div id="container">
+  <div mat-dialog-actions
+    style="width: 80%;display: flex;justify-content: space-between;height: 26px; background: linear-gradient(135deg, #4a7ff1, #74c0f9); ; position: fixed;">
+    <div class="title" style="margin-left: 4px;">fiche de fournisseur (rechercher)</div>
+    <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close" (click)="closepopup()"></button>
+  </div>
+  <div style="margin-top: 25px;">
+    <ng-container *ngIf="fournisseurState$ | async as state" [ngSwitch]="state.dataState">
+      <ng-container *ngSwitchCase="fournisseurStateEnume.INITIAL">
+        ksdcksdbckhb
+      </ng-container>
+      <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
+        *ngSwitchCase="fournisseurStateEnume.LOADING">
+        <span class="loader"></span>
+      </div>
+      <ng-container *ngSwitchCase="fournisseurStateEnume.LOADED">
+        <div *ngIf="daitaillefournisseur==0">
+          <div *ngIf="state.fournisseur!=null">
+            <div class="row">
+              <div class="col">
+                <div class="card shadow">
+                  <div class="card-header border-0">
+                    <h3 class="mb-0">liste de founisseur</h3>
+                    <div style="width: 100%; display: flex;justify-content: center;">
+                      <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                        [(ngModel)]="searchText">
+                      <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                          src="../assets/images/rechercher.png" alt=""></div>
+                    </div>
+
+                  </div>
+                  <div class="table-responsive" style="height: 75vh; max-height: 71.3vh ;">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">abbreviation</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor=" let Client of state.fournisseur.suppliers">
+                          <th scope="row">
+                            <div class="media align-items-center">
+                              <div class="media-body">
+                                {{Client.code}}
+                              </div>
+                            </div>
+                          </th>
+                          <td>
+                            {{Client.companyName}}
+                          </td>
+                          <td>
+                            {{Client.abbreviation}}
+                          </td>
+                          <td>
+                            <div class="avatar-group">
+                              {{Client.maxCredit}}
+                            </div>
+                          </td>
+                          <td>
+                            <div class="d-flex align-items-center">
+                          <td>{{Client.maxTerms}}</td>
+                  </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+
+                  <td>{{Client.inProgress}}</td>
+                </div>
+                </td>
+
+                <td>
+                  <div class="d-flex align-items-center">
+                    <button (click)="showdaitailleFournisseur(Client.code)" class="btn btn-light">
+                      <img src="../assets/images/yeuxicons.png" alt="">
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <button (click)="showdaitailleFournisseurupdate(Client.code)" class="btn btn-light">
+                      <img src="../assets/images/modifierIcons.png" alt="">
+                    </button>
+                  </div>
+                </td>
+                </tr>
+                <tr>
+                  </tbody>
+                  </table>
+              </div>
+              <mat-paginator [length]="state.fournisseur.count" [pageSize]="nombrefournisseurDansUnPage"
+                [pageIndex]="currentpage-1" (page)="onchangepage($event)"></mat-paginator>
+              <div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  </div>
+
+  <div *ngIf="state.four">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> founisseur : {{state.four.companyName}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">abbreviation</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        {{state.four.code}}
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{state.four.companyName}}
+                  </td>
+                  <td>
+                    {{state.four.abbreviation}}
+                  </td>
+                  <td>
+                    <div class="avatar-group">
+                      {{state.four.maxCredit}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                  <td>{{state.four.maxTerms}}</td>
+          </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+
+          <td>{{state.four.inProgress}}</td>
+        </div>
+        </td>
+
+        <td>
+          <div class="d-flex align-items-center">
+            <button (click)="showdaitailleFournisseur(state.four.code)" class="btn btn-light">
+              <img src="../assets/images/yeuxicons.png" alt="">
+            </button>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <button (click)="showdaitailleFournisseurupdate(state.four.code)" class="btn btn-light">
+              <img src="../assets/images/modifierIcons.png" alt="">
+            </button>
+          </div>
+        </td>
+        </tr>
+        <tr>
+          </tbody>
+          </table>
+      </div>
+      <div style="width: 100%; display: flex; justify-content: end;">
+        <a class="button-77" role="button">
+          <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+            <img src="../assets/images/retournericon.png" alt="">
+            <h6>Retourner</h6>
+          </div>
+        </a>
+
+      </div>
+
+      <div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+<div *ngIf="daitaillefournisseur==1">
+
+  <div *ngIf="state.four">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> founisseur : {{state.four.companyName}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">abbreviation</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{state.four.code}}
+                  </td>
+                  <td>
+                    {{state.four.companyName}}
+                  </td>
+                  <td>
+                    {{state.four.abbreviation}}
+                  </td>
+                  <td>
+                    <div class="avatar-group">
+                      {{state.four.maxCredit}}
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                  <td>{{state.four.maxTerms}}</td>
+          </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+
+          <td>{{state.four.inProgress}}</td>
+        </div>
+        </td>
+        </tr>
+        <tr>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">address</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">city</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">postal Code</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">country</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">activity</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">responsible</th>
+        </tr>
+        <tr>
+          <td>
+            {{state.four.address}}
+          </td>
+          <td>
+            {{state.four.city}}
+          </td>
+          <td>
+            {{state.four.postalCode}}
+          </td>
+          <td>
+            <div class="avatar-group">
+              {{state.four.country}}
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+          <td>{{state.four.activity}}</td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+
+      <td>{{state.four.responsible}}</td>
+    </div>
+    </td>
+    </tr>
+    <tr>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">phone</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fax</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">email</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">bank</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">rib</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">domiciliation</th>
+    </tr>
+    <tr>
+      <td>
+        {{state.four.phone}}
+      </td>
+      <td>
+        {{state.four.fax}}
+      </td>
+      <td>
+        {{state.four.email}}
+      </td>
+      <td>
+        <div class="avatar-group">
+          {{state.four.bank}}
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+      <td>{{state.four.rib}}</td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>{{state.four.domiciliation}}</td>
+</div>
+</td>
+</tr>
+<tr>
+<tr>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fiscalID</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">payment</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">daysCount</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">delay</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">type</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">accounting</th>
+</tr>
+<tr>
+  <td>
+    {{state.four.fiscalID}}
+  </td>
+  <td>
+    {{state.four.payment}}
+  </td>
+  <td>
+    {{state.four.daysCount}}
+  </td>
+  <td>
+    <div class="avatar-group">
+      {{state.four.delay}}
+    </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+  <td>{{state.four.type}}</td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>{{state.four.accounting}}</td>
+  </div>
+  </td>
+</tr>
+<tr>
+<tr>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">nature</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">currency</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">agent</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATSubject</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isBlockedAccount</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isFODECExemption</th>
+</tr>
+<tr>
+  <td>
+    {{state.four.nature}}
+  </td>
+  <td>
+    {{state.four.currency}}
+  </td>
+  <td>
+    {{state.four.agent}}
+  </td>
+  <td>
+    <div class="avatar-group">
+      {{state.four.isVATSubject}}
+    </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+  <td>{{state.four.isBlockedAccount}}</td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>{{state.four.isFODECExemption}}</td>
+  </div>
+  </td>
+</tr>
+<tr>
+<tr>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isCICTExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isStampExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option1</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option2</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option3</th>
+</tr>
+<tr>
+  <td>
+    {{state.four.isVATExemption}}
+  </td>
+  <td>
+    {{state.four.isCICTExemption}}
+  </td>
+  <td>
+    {{state.four.isStampExemption}}
+  </td>
+  <td>
+    <div class="avatar-group">
+      {{state.four.option1}}
+    </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+  <td>{{state.four.option2}}</td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>{{state.four.option3}}</td>
+  </div>
+  </td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</div>
+
+
+
+<div>
+</div>
+<div style="width: 100%; display: flex; justify-content: end;">
+  <a class="button-77" role="button">
+    <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>Retourner</h6>
+    </div>
+  </a>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div *ngIf="daitaillefournisseur==2">
+
+  <div *ngIf="state.four">
+    <form [formGroup]="formfournisseurComplete" novalidate>
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> founisseur : {{state.four.companyName}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">abbreviation</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.code" formControlName="code" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.companyName" formControlName="companyName" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.abbreviation" formControlName="abbreviation" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.maxCredit" formControlName="abbreviation" required>
+
+                      </div>
+                    </div>
+
+
+
+
+                  </td>
+
+
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.maxTerms" formControlName="abbreviation" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+
+
+
+                  <td>
+                    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+                        [checked]="state.four.inProgress">
+
+                    </div>
+
+                  </td>
+
+
+                </tr>
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">address</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">city</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">postal Code</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">country</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">activity</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">responsible</th>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.address" formControlName="address" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.city" formControlName="city" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.postalCode" formControlName="postalCode" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.country" formControlName="postalCode" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="d-flex align-items-center">
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [value]="state.four.activity" formControlName="postalCode" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+          </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+
+                <input type="text" [value]="state.four.responsible" formControlName="postalCode" required>
+
+              </div>
+            </div>
+
+          </td>
+        </div>
+        </td>
+        </tr>
+        <tr>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">phone</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fax</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">email</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">bank</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">rib</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">domiciliation</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+
+                <input type="text" [value]="state.four.phone" formControlName="postalCode" required>
+
+              </div>
+            </div>
+
+
+          </td>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+
+                <input type="text" [value]="state.four.fax" formControlName="postalCode" required>
+
+              </div>
+            </div>
+
+          </td>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+
+                <input type="text" [value]="state.four.email" formControlName="postalCode" required>
+
+              </div>
+            </div>
+
+          </td>
+          <td>
+            <div class="avatar-group">
+              <div class="user-details">
+                <div class="input-box">
+
+                  <input type="text" [value]="state.four.bank" formControlName="postalCode" required>
+
+                </div>
+              </div>
+
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+
+                <input type="text" [value]="state.four.rib" formControlName="postalCode" required>
+
+              </div>
+            </div>
+
+          </td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+
+            <input type="text" [value]="state.four.domiciliation" formControlName="postalCode" required>
+
+          </div>
+        </div>
+
+      </td>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <tr>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fiscalID</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">payment</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">daysCount</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">delay</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">type</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">accounting</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+
+            <input type="text" [value]="state.four.fiscalID" formControlName="postalCode" required>
+
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+
+            <input type="text" [value]="state.four.payment" formControlName="postalCode" required>
+
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+
+            <input type="text" [value]="state.four.daysCount" formControlName="postalCode" required>
+
+          </div>
+        </div>
+
+      </td>
+      <td>
+        <div class="avatar-group">
+          <div class="user-details">
+            <div class="input-box">
+
+              <input type="text" [value]="state.four.delay" formControlName="postalCode" required>
+
+            </div>
+          </div>
+
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+
+            <input type="text" [value]="state.four.type" formControlName="postalCode" required>
+
+          </div>
+        </div>
+      </td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>
+    <div class="user-details">
+      <div class="input-box">
+
+        <input type="text" [value]="state.four.accounting" formControlName="postalCode" required>
+
+      </div>
+    </div>
+
+  </td>
+</div>
+</td>
+</tr>
+<tr>
+<tr>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">nature</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">currency</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">agent</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATSubject</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isBlockedAccount</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isFODECExemption</th>
+</tr>
+<tr>
+  <td>
+    <div class="user-details">
+      <div class="input-box">
+
+        <input type="text" [value]="state.four.nature" formControlName="postalCode" required>
+
+      </div>
+    </div>
+
+  </td>
+  <td>
+    <div class="user-details">
+      <div class="input-box">
+
+        <input type="text" [value]="state.four.currency" formControlName="postalCode" required>
+
+      </div>
+    </div>
+
+  </td>
+  <td>
+    <div class="user-details">
+      <div class="input-box">
+
+        <input type="text" [value]="state.four.agent" formControlName="postalCode" required>
+
+      </div>
+    </div>
+
+  </td>
+  <td>
+    <div class="avatar-group">
+      <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+        <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+          [checked]="state.four.isVATSubject">
+
+      </div>
+
+    </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.isBlockedAccount">
+
+    </div>
+
+  </td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.isFODECExemption">
+
+    </div>
+
+  </td>
+  </div>
+  </td>
+</tr>
+<tr>
+<tr>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isCICTExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isStampExemption</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option1</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option2</th>
+  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option3</th>
+</tr>
+<tr>
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.isVATExemption">
+
+    </div>
+
+  </td>
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.isCICTExemption">
+
+    </div>
+
+  </td>
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.isStampExemption">
+
+    </div>
+
+  </td>
+  <td>
+    <div class="avatar-group">
+      <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+        <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+          [checked]="state.four.option1">
+
+      </div>
+
+    </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.option2">
+
+    </div>
+
+  </td>
+  </div>
+  </td>
+  <td>
+    <div class="d-flex align-items-center">
+
+  <td>
+    <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
+        [checked]="state.four.option3">
+
+    </div>
+  </td>
+  </div>
+  </td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</div>
+
+
+
+<div>
+</div>
+<div style="width: 100%; display: flex; justify-content: end;">
+  <a class="button-77" role="button">
+    <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>Retourner</h6>
+    </div>
+  </a>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+</form>
+
+</div>
+
+</div>
+
+
+</ng-container>
+</ng-container>
+
+</div>
+
+
+
+
+
+
+<!-- Dark table -->

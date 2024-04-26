@@ -21,8 +21,10 @@ import { loginReducer } from './ngrx/ngrxLogin/login.reducer';
 import { loginEffects } from './ngrx/ngrxLogin/login.effects';
 import { SuprimerFournisseurComponent } from './gestionFournisseurs/suprimer-fournisseur/suprimer-fournisseur.component';
 import { AppHttpInterceptor } from './interceptor/app-http.interceptor';
-import { fournisseurReducer } from './ngrx/ngrxfournisseur/fournisseur.reducer';
+import { fournisseurReducer, fournisseurSaveReducer } from './ngrx/ngrxfournisseur/fournisseur.reducer';
 import { fournisseurEffect } from './ngrx/ngrxfournisseur/fournisseur.effects';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher-fournisseur/rechercher-fournisseur.component'
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { fournisseurEffect } from './ngrx/ngrxfournisseur/fournisseur.effects';
     SideBarnavigatioComponent,
     ClickoutSideBarNavigationDirective,
     LoginComponent,
-    SuprimerFournisseurComponent
+    SuprimerFournisseurComponent,
+    RechercherFournisseurComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +48,8 @@ import { fournisseurEffect } from './ngrx/ngrxfournisseur/fournisseur.effects';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({loginReducer:loginReducer,fournisseurReducer:fournisseurReducer}),
+    MatPaginatorModule,
+    StoreModule.forRoot({loginReducer:loginReducer,fournisseurReducer:fournisseurReducer,fournisseurSaveReducer:fournisseurSaveReducer}),
     EffectsModule.forRoot([loginEffects,fournisseurEffect]),
     StoreDevtoolsModule.instrument(),
   ],

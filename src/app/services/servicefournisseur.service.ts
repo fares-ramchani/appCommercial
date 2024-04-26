@@ -73,10 +73,13 @@ export class ServicefournisseurService {
     data.fournisseur=data1;
     this.fournisseurCompletteData.next(data);
   }
-  updateFournisseurCompleteData1(data: fournisseur){
-    const fournisseurComplete10:fournisseurComplete=this.fournisseurComplete1;
-    fournisseurComplete10.fournisseur=data;
-    this.fournisseurCompletteData.next(fournisseurComplete10);
+  updateFournisseurCompleteData1(data: fournisseur,data1:fournisseurComplete |null){
+    const fournisseurComplete10:fournisseurComplete |null=data1;
+    if(fournisseurComplete10){
+      fournisseurComplete10.fournisseur=data;
+      this.fournisseurCompletteData.next(fournisseurComplete10);
+    }
+    
   }
 
   public getfournisseurParpagination(paginationParamter:paginationParamter):Observable<any>{
@@ -85,5 +88,11 @@ export class ServicefournisseurService {
   }
   public deletefournisseurByCode(codeFournisseur:number):Observable<any>{
     return this.http.delete<any>("http://localhost:8000/management/logged-in-user/delete-supplier/"+codeFournisseur);
+  }
+  public saveFournisseur(fournisseur:any):Observable<any>{
+    return this.http.post<any>("http://localhost:8000/management/logged-in-user/create-supplier",fournisseur);
+  }
+  public getFournisseurByCode(codeFournisseur:number):Observable<any>{
+    return this.http.get<any>("http://localhost:8000/management/logged-in-user/get-supplier/"+codeFournisseur);
   }
 }

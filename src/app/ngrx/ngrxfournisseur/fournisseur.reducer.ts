@@ -7,12 +7,16 @@ export enum fournisseurStateEnume {
     INITIAL = "initial"
 }
 export interface fournisseurState {
-    fournisseur: any[],
+    fournisseur: any,
+    four:any,
+    count:any,
     errorMessage: string,
     dataState: fournisseurStateEnume
 }
 const initState: fournisseurState = {
-    fournisseur: [],
+    fournisseur: null,
+    four : null,
+    count:null,
     errorMessage: "",
     dataState: fournisseurStateEnume.INITIAL
 }
@@ -22,7 +26,7 @@ export function fournisseurReducer(state = initState, action: Action): fournisse
         case fournisseurActionsTypes.Get_All_fournisseur:
             return { ...state, dataState: fournisseurStateEnume.LOADING }
         case fournisseurActionsTypes.Get_All_fournisseur_Succeess:
-            return { ...state, dataState: fournisseurStateEnume.LOADED, fournisseur: (<GetAllfournisseurActions>action).payload }
+            return { ...state, dataState: fournisseurStateEnume.LOADED, fournisseur: (<GetAllfournisseurActions>action).payload, four:null }
         case fournisseurActionsTypes.Get_All_fournisseur_Error:
             return { ...state, dataState: fournisseurStateEnume.ERROR, errorMessage: (<GetAllfournisseurActions>action).payload }
         case fournisseurActionsTypes.delete_fournisseur:
@@ -30,6 +34,23 @@ export function fournisseurReducer(state = initState, action: Action): fournisse
         case fournisseurActionsTypes.delete_fournisseur_Succeess:
             return { ...state, dataState: fournisseurStateEnume.LOADED, fournisseur: (<fournisseurActions>action).payload }
         case fournisseurActionsTypes.delete_fournisseur_Error:
+            return { ...state, dataState: fournisseurStateEnume.ERROR, errorMessage: (<fournisseurActions>action).payload }
+        case fournisseurActionsTypes.getfournisseur_by_code:
+            return { ...state, dataState: fournisseurStateEnume.LOADING }
+        case fournisseurActionsTypes.getfournisseur_by_code_Succeess:
+            return { ...state, dataState: fournisseurStateEnume.LOADED, fournisseur: null,four:(<fournisseurActions>action).payload  }
+        case fournisseurActionsTypes.getfournisseur_by_code_Error:
+            return { ...state, dataState: fournisseurStateEnume.ERROR, errorMessage: (<fournisseurActions>action).payload }
+        default: return { ...state, dataState: fournisseurStateEnume.INITIAL }
+    }
+}
+export function fournisseurSaveReducer(state = initState, action: Action): fournisseurState {
+    switch (action.type) {
+        case fournisseurActionsTypes.Save_fournisseur:
+            return { ...state, dataState: fournisseurStateEnume.LOADING }
+        case fournisseurActionsTypes.Save_fournisseur_Succeess:
+            return { ...state, dataState: fournisseurStateEnume.LOADED, fournisseur: (<fournisseurActions>action).payload }
+        case fournisseurActionsTypes.Save_fournisseur_Error:
             return { ...state, dataState: fournisseurStateEnume.ERROR, errorMessage: (<fournisseurActions>action).payload }
         default: return { ...state, dataState: fournisseurStateEnume.INITIAL }
     }

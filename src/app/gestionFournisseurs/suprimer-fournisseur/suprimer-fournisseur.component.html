@@ -9,32 +9,39 @@
       <ng-container *ngSwitchCase="fournisseurStateEnume.INITIAL">
         ksdcksdbckhb
       </ng-container>
-      <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;" *ngSwitchCase="fournisseurStateEnume.LOADING">
-        <span 
-        class="loader"></span>
+      <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
+        *ngSwitchCase="fournisseurStateEnume.LOADING">
+        <span class="loader"></span>
       </div>
       <ng-container *ngSwitchCase="fournisseurStateEnume.LOADED">
+        <div *ngIf="state.fournisseur!=null">
         <div class="row">
           <div class="col">
             <div class="card shadow">
               <div class="card-header border-0">
                 <h3 class="mb-0">liste de founisseur</h3>
-                <input class="form-control" type="text" placeholder="search" [(ngModel)]="searchText">
+                <div style="width: 100%; display: flex;justify-content: center;">
+                  <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                    [(ngModel)]="searchText">
+                  <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                      src="../assets/images/rechercher.png" alt=""></div>
+                </div>
               </div>
-              <div class="table-responsive">
+              <div class="table-responsive" style="height: 77.8vh; max-height: 71.3vh ;">
                 <table class="table align-items-center table-flush">
                   <thead class="thead-light">
                     <tr>
-                      <th scope="col">code</th>
-                      <th scope="col">companyName</th>
-                      <th scope="col">abbreviation</th>
-                      <th scope="col">maxCredit</th>
-                      <th scope="col">maxTerms</th>
-                      <th scope="col">inProgress</th>
+                      <th  style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                      <th  style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);"  scope="col">abbreviation</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor=" let Client of state.fournisseur">
+                    <tr *ngFor=" let Client of state.fournisseur.suppliers">
                       <th scope="row">
                         <div class="media align-items-center">
                           <div class="media-body">
@@ -60,11 +67,11 @@
               </td>
               <td>
                 <div class="d-flex align-items-center">
-      
+
               <td>{{Client.inProgress}}</td>
             </div>
             </td>
-      
+
             <td>
               <div class="d-flex align-items-center">
                 <button class="btn btn-light" (click)="deleteFournisseurByCode(Client.code)">
@@ -77,21 +84,100 @@
               </tbody>
               </table>
           </div>
+          <mat-paginator [length]="state.fournisseur.count" [pageSize]="nombrefournisseurDansUnPage" [pageIndex]="currentpage-1"(page)="onchangepage($event)"></mat-paginator>
           <div>
           </div>
         </div>
-      </div>
-      </div>
-      </ng-container>
-    </ng-container>
-
   </div>
+</div>
+</div>
+<div *ngIf="state.four">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0"> founisseur : {{state.four.companyName}}</h3>
+          <div style="width: 100%; display: flex;justify-content: center;">
+            <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+              [(ngModel)]="searchText">
+            <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                src="../assets/images/rechercher.png" alt=""></div>
+          </div>
+
+        </div>
+        <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+          <table class="table align-items-center table-flush">
+            <thead class="thead-light">
+              <tr>
+                <th  style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                          <th  style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);"  scope="col">abbreviation</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                      {{state.four.code}}
+                    </td>
+                <td>
+                  {{state.four.companyName}}
+                </td>
+                <td>
+                  {{state.four.abbreviation}}
+                </td>
+                <td>
+                  <div class="avatar-group">
+                    {{state.four.maxCredit}}
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                <td>{{state.four.maxTerms}}</td>
+        </div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+
+        <td>{{state.four.inProgress}}</td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-light" (click)="deleteFournisseurByCode(state.four.code)">
+            <img src="../assets/images/supprimer.png" alt="">
+          </button>
+        </div>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+      <div style="width: 100%; display: flex; justify-content: end;">
+        <a class="button-77" role="button">
+          <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+            <img src="../assets/images/retournericon.png" alt="">
+            <h6>Retourner</h6>
+          </div>
+        </a>
+      
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+
+</ng-container>
+</ng-container>
+
+</div>
 
 
- 
+
 
 
 
 <!-- Dark table -->
-
-

@@ -5,12 +5,15 @@ import { fournisseurComplete } from 'src/app/model/fournisseurComplete.model';
 import { ServicefournisseurService } from 'src/app/services/servicefournisseur.service';
 import { ShowComposantSidebarNvigationService } from 'src/app/services/show-composant-sidebar-nvigation.service';
 
+
 @Component({
   selector: 'app-registration-fournisseur',
   templateUrl: './registration-fournisseur.component.html',
   styleUrls: ['./registration-fournisseur.component.css']
 })
 export class RegistrationFournisseurComponent {
+ 
+  
   showcomposantSideBarNavigation: boolean = false;
   formfournisseurComplete!: FormGroup;
   fournisseurData!: fournisseur;
@@ -22,7 +25,7 @@ export class RegistrationFournisseurComponent {
       abbreviation: this.fb.control(''),
       maxCredit: this.fb.control(''),
       maxTerms: this.fb.control(''),
-      inProgress: this.fb.control(''),
+      inProgress: this.fb.control(false),
     })
 
     this.ServicefournisseurService.fournisseurData$.subscribe(data => {
@@ -42,6 +45,7 @@ export class RegistrationFournisseurComponent {
     this.ShowComposantSidebarNvigationService.closeshowpopup();
 
   }
+
 
 savefournisseur(){
   let fournisseurComplete:fournisseurComplete=this.formfournisseurComplete.value

@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <form [formGroup]="formfournisseurComplete" novalidate>
 <div (click)="closepopup()" style="display: flex;width: 100%; background-color: #70b1fb;">
-    <div style="display: flex;flex-direction: column; width: 87%;  ">
+    <div style="display: flex;flex-direction: column; width:100%; ">
         <div style="display: flex; width: 100%; ">
             
             <div style="width: 15%;">
@@ -45,12 +45,12 @@
                 </label>
             </div>
         </div>
-        <div>
+        <div style="width: 100%;">
             <router-outlet></router-outlet>
         </div>
     </div>
-    <div style="width: 10%; ">
-        <app-side-bar-option></app-side-bar-option>
+    <div>
+        <app-side-bar-option ></app-side-bar-option>
     </div>
 
 </div>

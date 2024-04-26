@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/guard-authentification.guard';
 
 const routes: Routes = [
-  {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent,canActivate:[AuthGuard]
+  {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent
   ,children:[
     {path :"RegistrationFournisseurAutres" , component: RegistrationFournisseurAutresComponent},
     {path :"RegistrationFournisseurFiche" , component: RegistrationFournisseurFicheComponent},

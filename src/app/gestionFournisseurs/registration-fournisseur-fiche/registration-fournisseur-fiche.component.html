@@ -1,182 +1,397 @@
-<div class="container">
-    <div class="title">Registration fournisseur</div>
-    <div class="content">
-      <form [formGroup]="formfournisseur" novalidate>
-        <div class="user-details">
-          <div class="input-box" style="width: 100%;">
-            <span class="details">Adresse</span>
-            <input type="text" placeholder="Enter Adresse" formControlName="address" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Ville</span>
-            <input type="text" placeholder="Enter Ville" formControlName="city" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Code Postale</span>
-            <input type="text" placeholder="Enter Code Postale" formControlName="postalCode" required>
-          </div>
-          <div class="input-box">
-            <span class="details">Pays</span>
-            <input type="text" placeholder="Enter Pays" formControlName="country" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box">
-            <span class="details">Activité</span>
-            <input type="text" placeholder="Enter Activité" formControlName="activity" required>
-          </div>
-          <div class="input-box" style="width: 66%;">
-            <span class="details">Responsable</span>
-            <input type="text" placeholder="Enter Responsable" formControlName="responsible" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 100%;">
-            <span class="details">Téléphone</span>
-            <input type="text" placeholder="Enter Téléphone" formControlName="phone" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 49%;">
-            <span class="details">Fax</span>
-            <input type="text" placeholder="Enter Fax" formControlName="fax" required>
-          </div>
-          <div class="input-box" style="width: 49%;">
-            <span class="details">E-mail</span>
-            <input type="text" placeholder="Enter E-mail" formControlName="email" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 49%;">
-            <span class="details">Banque</span>
-            <input type="text" placeholder="Enter Banque" formControlName="bank" required>
-          </div>
-          <div class="input-box" style="width: 49%;">
-            <span class="details">Domiciliasion</span>
-            <input type="text" placeholder="Enter Domiciliasion" formControlName="domiciliation" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 100%;">
-            <span class="details">RIB</span>
-            <input type="text" placeholder="Enter RIB" formControlName="rib" required>
-          </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 50%;">
-            <span class="details">Mat Fiscal</span>
-            <input type="text" placeholder="Enter Mat Fiscal" formControlName="fiscalID" required>
-          </div>
-          <div class="user-details" style="width: 50%;display: flex;">
-            <div class="input-box" style="width: 50%; display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Assuqetti a la
-                TVA</span>
-              <input type="checkbox" formControlName="isVATSubject" required>
-            </div>
-            <div class="input-box" style="width: 48%;display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">compte bloquer </span>
-              <input type="checkbox"  formControlName="isBlockedAccount" required>
+<div *ngIf="FounisseurState$ | async as state" [ngSwitch]="state.dataState">
+  <div *ngSwitchCase="fournisseurStateEnume.INITIAL">
+    <div class="container">
+      <div class="title">Registration fournisseur</div>
+      <div class="content">
+        <form [formGroup]="formfournisseur" novalidate>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">Adresse</span>
+              <input type="text" placeholder="Enter Adresse" formControlName="address" required>
             </div>
           </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 35%;">
-            <span class="details">Paiement</span>
-            <input type="text" placeholder="Enter Paiement" formControlName="payment" required>
-          </div>
-          <div class="input-box" style="width: 10%;">
-            <span class="details">Nbre Jour</span>
-            <input type="number" placeholder="Enter Nbre Jour" formControlName="daysCount" required>
-          </div>
-          <div class="user-details" style="width: 50%;display: flex;">
-            <div class="input-box" style="width: 50%; display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
-                FDDEC</span>
-              <input type="checkbox" formControlName="isFODECExemption" required>
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Ville</span>
+              <input type="text" placeholder="Enter Ville" formControlName="city" required>
             </div>
-            <div class="input-box" style="width: 48%;display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 1 </span>
-              <input type="checkbox"  formControlName="option1" required>
+            <div class="input-box">
+              <span class="details">Code Postale</span>
+              <input type="text" placeholder="Enter Code Postale" formControlName="postalCode" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Pays</span>
+              <input type="text" placeholder="Enter Pays" formControlName="country" required>
             </div>
           </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 50%;">
-            <span class="details">Délai</span>
-            <div style="display: flex; align-items: center;">
-              <input type="text" style="width: 50%;" placeholder="Enter Délai" formControlName="delay" required>
-              <span class="details">Jour payer , avant de bloquer la facturation</span>
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Activité</span>
+              <input type="text" placeholder="Enter Activité" formControlName="activity" required>
             </div>
-  
-          </div>
-  
-          <div class="user-details" style="width: 50%;display: flex;">
-            <div class="input-box" style="width: 50%; display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération TVA</span>
-              <input type="checkbox"  formControlName="isVATExemption" required>
-            </div>
-            <div class="input-box" style="width: 48%;display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 2 </span>
-              <input type="checkbox"  formControlName="option2" required>
+            <div class="input-box" style="width: 66%;">
+              <span class="details">Responsable</span>
+              <input type="text" placeholder="Enter Responsable" formControlName="responsible" required>
             </div>
           </div>
-        </div>
-        <div class="user-details">
-          <div class="user-details" style="width: 48%;">
-            <div class="input-box" style="width: 48%;">
-              <span class="details">Type</span>
-              <input type="text" placeholder="Enter Type" formControlName="type" required>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">Téléphone</span>
+              <input type="text" placeholder="Enter Téléphone" formControlName="phone" required>
             </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Fax</span>
+              <input type="text" placeholder="Enter Fax" formControlName="fax" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">E-mail</span>
+              <input type="text" placeholder="Enter E-mail" formControlName="email" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Banque</span>
+              <input type="text" placeholder="Enter Banque" formControlName="bank" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Domiciliasion</span>
+              <input type="text" placeholder="Enter Domiciliasion" formControlName="domiciliation" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">RIB</span>
+              <input type="text" placeholder="Enter RIB" formControlName="rib" required>
+            </div>
+          </div>
+          <div class="user-details">
             <div class="input-box" style="width: 50%;">
-              <span class="details">Nature</span>
-              <input type="text" placeholder="Enter Nature" formControlName="nature" required>
+              <span class="details">Mat Fiscal</span>
+              <input type="text" placeholder="Enter Mat Fiscal" formControlName="fiscalID" required>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Assuqetti a la
+                  TVA</span>
+                <input type="checkbox" formControlName="isVATSubject" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">compte bloquer
+                </span>
+                <input type="checkbox" formControlName="isBlockedAccount" required>
+              </div>
             </div>
           </div>
-          <div class="user-details" style="width: 50%;display: flex;">
-            <div class="input-box" style="width: 50%; display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération CICT</span>
-              <input type="checkbox" formControlName="isCICTExemption" required>
+          <div class="user-details">
+            <div class="input-box" style="width: 35%;">
+              <span class="details">Paiement</span>
+              <input type="text" placeholder="Enter Paiement" formControlName="payment" required>
             </div>
-            <div class="input-box" style="width: 48%;display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 3 </span>
-              <input type="checkbox" formControlName="option3" required>
+            <div class="input-box" style="width: 10%;">
+              <span class="details">Nbre Jour</span>
+              <input type="number" placeholder="Enter Nbre Jour" formControlName="daysCount" required>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  FDDEC</span>
+                <input type="checkbox" formControlName="isFODECExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 1 </span>
+                <input type="checkbox" formControlName="option1" required>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="user-details">
-          <div class="user-details" style="width: 48%;">
-            <div class="input-box" style="width: 48%;">
-              <span class="details">accounting</span>
-              <input type="text" placeholder="Enter Comptabilité" formControlName="accounting" required>
-            </div>
+          <div class="user-details">
             <div class="input-box" style="width: 50%;">
-              <span class="details">devise</span>
-              <input type="text" placeholder="Enter devise" formControlName="currency" required>
+              <span class="details">Délai</span>
+              <div style="display: flex; align-items: center;">
+                <input type="text" style="width: 50%;" placeholder="Enter Délai" formControlName="delay" required>
+                <span class="details">Jour payer , avant de bloquer la facturation</span>
+              </div>
+
+            </div>
+
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  TVA</span>
+                <input type="checkbox" formControlName="isVATExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 2 </span>
+                <input type="checkbox" formControlName="option2" required>
+              </div>
             </div>
           </div>
-          <div class="user-details" style="width: 50%;display: flex;">
-            <div class="input-box" style="width: 50%; display: flex;">
-              <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
-                Timbre</span>
-              <input type="checkbox"  formControlName="isStampExemption" required>
+          <div class="user-details">
+            <div class="user-details" style="width: 48%;">
+              <div class="input-box" style="width: 48%;">
+                <span class="details">Type</span>
+                <input type="text" placeholder="Enter Type" formControlName="type" required>
+              </div>
+              <div class="input-box" style="width: 50%;">
+                <span class="details">Nature</span>
+                <input type="text" placeholder="Enter Nature" formControlName="nature" required>
+              </div>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  CICT</span>
+                <input type="checkbox" formControlName="isCICTExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 3 </span>
+                <input type="checkbox" formControlName="option3" required>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="user-details">
-          <div class="input-box" style="width: 49%;">
-            <span class="details">Agent</span>
-            <input type="text" placeholder="Enter Agent" formControlName="agent" required>
+          <div class="user-details">
+            <div class="user-details" style="width: 48%;">
+              <div class="input-box" style="width: 48%;">
+                <span class="details">accounting</span>
+                <input type="text" placeholder="Enter Comptabilité" formControlName="accounting" required>
+              </div>
+              <div class="input-box" style="width: 50%;">
+                <span class="details">devise</span>
+                <input type="text" placeholder="Enter devise" formControlName="currency" required>
+              </div>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  Timbre</span>
+                <input type="checkbox" formControlName="isStampExemption" required>
+              </div>
+            </div>
           </div>
-          <div class="input-box" style="width: 49%;">
-            <span class="details">nom</span>
-            <input type="text" placeholder=""
-              style="background-color: rgba(0, 0, 0, 0.059);">
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Agent</span>
+              <input type="text" placeholder="Enter Agent" formControlName="agent" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">nom</span>
+              <input type="text" placeholder="" style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+    <app-imprimer *ngIf="showcomposantImprimer"></app-imprimer>
+    <app-suprimer-fournisseur *ngIf="showcomposantsupprimer"></app-suprimer-fournisseur>
+    <app-rechercher-fournisseur *ngIf="showcomposantrechercher"></app-rechercher-fournisseur>
   </div>
-  <app-imprimer *ngIf="showcomposantImprimer"></app-imprimer>
-  <app-suprimer-fournisseur *ngIf="showcomposantsupprimer"></app-suprimer-fournisseur>
+  <div style="width: 100%;height: 75vh; display: flex; justify-content: center; align-items: center;" *ngSwitchCase="fournisseurStateEnume.LOADING">
+    <span 
+    class="loader"></span>
+  </div>
+  <div *ngSwitchCase="fournisseurStateEnume.LOADED">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+      <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+      </symbol>
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </symbol>
+    </svg>
+    <div class="alert alert-success hide-alert" style="position: fixed; height: 80px; display: flex;  align-items: center; justify-content: center; right: 45%; " role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>
+        Votre enregistrement a été effectué avec succès
+      </div>
+    </div>
+    <div class="container">
+      <div class="title">Registration fournisseur</div>
+      <div class="content">
+        <form [formGroup]="formfournisseur" novalidate>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">Adresse</span>
+              <input type="text" placeholder="Enter Adresse" formControlName="address" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Ville</span>
+              <input type="text" placeholder="Enter Ville" formControlName="city" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Code Postale</span>
+              <input type="text" placeholder="Enter Code Postale" formControlName="postalCode" required>
+            </div>
+            <div class="input-box">
+              <span class="details">Pays</span>
+              <input type="text" placeholder="Enter Pays" formControlName="country" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box">
+              <span class="details">Activité</span>
+              <input type="text" placeholder="Enter Activité" formControlName="activity" required>
+            </div>
+            <div class="input-box" style="width: 66%;">
+              <span class="details">Responsable</span>
+              <input type="text" placeholder="Enter Responsable" formControlName="responsible" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">Téléphone</span>
+              <input type="text" placeholder="Enter Téléphone" formControlName="phone" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Fax</span>
+              <input type="text" placeholder="Enter Fax" formControlName="fax" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">E-mail</span>
+              <input type="text" placeholder="Enter E-mail" formControlName="email" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Banque</span>
+              <input type="text" placeholder="Enter Banque" formControlName="bank" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Domiciliasion</span>
+              <input type="text" placeholder="Enter Domiciliasion" formControlName="domiciliation" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 100%;">
+              <span class="details">RIB</span>
+              <input type="text" placeholder="Enter RIB" formControlName="rib" required>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 50%;">
+              <span class="details">Mat Fiscal</span>
+              <input type="text" placeholder="Enter Mat Fiscal" formControlName="fiscalID" required>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Assuqetti a la
+                  TVA</span>
+                <input type="checkbox" formControlName="isVATSubject" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">compte bloquer
+                </span>
+                <input type="checkbox" formControlName="isBlockedAccount" required>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 35%;">
+              <span class="details">Paiement</span>
+              <input type="text" placeholder="Enter Paiement" formControlName="payment" required>
+            </div>
+            <div class="input-box" style="width: 10%;">
+              <span class="details">Nbre Jour</span>
+              <input type="number" placeholder="Enter Nbre Jour" formControlName="daysCount" required>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  FDDEC</span>
+                <input type="checkbox" formControlName="isFODECExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 1 </span>
+                <input type="checkbox" formControlName="option1" required>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 50%;">
+              <span class="details">Délai</span>
+              <div style="display: flex; align-items: center;">
+                <input type="text" style="width: 50%;" placeholder="Enter Délai" formControlName="delay" required>
+                <span class="details">Jour payer , avant de bloquer la facturation</span>
+              </div>
+
+            </div>
+
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  TVA</span>
+                <input type="checkbox" formControlName="isVATExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 2 </span>
+                <input type="checkbox" formControlName="option2" required>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="user-details" style="width: 48%;">
+              <div class="input-box" style="width: 48%;">
+                <span class="details">Type</span>
+                <input type="text" placeholder="Enter Type" formControlName="type" required>
+              </div>
+              <div class="input-box" style="width: 50%;">
+                <span class="details">Nature</span>
+                <input type="text" placeholder="Enter Nature" formControlName="nature" required>
+              </div>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  CICT</span>
+                <input type="checkbox" formControlName="isCICTExemption" required>
+              </div>
+              <div class="input-box" style="width: 48%;display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px;">Option 3 </span>
+                <input type="checkbox" formControlName="option3" required>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="user-details" style="width: 48%;">
+              <div class="input-box" style="width: 48%;">
+                <span class="details">accounting</span>
+                <input type="text" placeholder="Enter Comptabilité" formControlName="accounting" required>
+              </div>
+              <div class="input-box" style="width: 50%;">
+                <span class="details">devise</span>
+                <input type="text" placeholder="Enter devise" formControlName="currency" required>
+              </div>
+            </div>
+            <div class="user-details" style="width: 50%;display: flex;">
+              <div class="input-box" style="width: 50%; display: flex;">
+                <span class="details" style="min-width: 100%; text-align: center;margin-top: 10px; ">Exonération
+                  Timbre</span>
+                <input type="checkbox" formControlName="isStampExemption" required>
+              </div>
+            </div>
+          </div>
+          <div class="user-details">
+            <div class="input-box" style="width: 49%;">
+              <span class="details">Agent</span>
+              <input type="text" placeholder="Enter Agent" formControlName="agent" required>
+            </div>
+            <div class="input-box" style="width: 49%;">
+              <span class="details">nom</span>
+              <input type="text" placeholder="" style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <app-imprimer *ngIf="showcomposantImprimer"></app-imprimer>
+    <app-suprimer-fournisseur *ngIf="showcomposantsupprimer"></app-suprimer-fournisseur>
+    <app-rechercher-fournisseur *ngIf="showcomposantrechercher"></app-rechercher-fournisseur>
+  </div>
+</div>

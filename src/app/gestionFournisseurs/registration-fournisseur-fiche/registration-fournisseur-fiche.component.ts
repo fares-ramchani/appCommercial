@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, NgModel, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
 import { fournisseur } from 'src/app/model/fournisseur.model';
+import { fournisseurComplete } from 'src/app/model/fournisseurComplete.model';
+import { fournisseurState, fournisseurStateEnume } from 'src/app/ngrx/ngrxfournisseur/fournisseur.reducer';
 import { ServicefournisseurService } from 'src/app/services/servicefournisseur.service';
 import { ShowComposantImprimerFornisseurService } from 'src/app/services/show-composant-imprimer-fornisseur.service';
+import { ShowComposantrechercherFornisseurService } from 'src/app/services/show-composantrechercher-fornisseur.service';
 import { ShowComposantsurprimmerFornisseurService } from 'src/app/services/show-composantsurprimmer-fornisseur.service';
 
 @Component({
@@ -13,9 +18,15 @@ import { ShowComposantsurprimmerFornisseurService } from 'src/app/services/show-
 export class RegistrationFournisseurFicheComponent {
   showcomposantImprimer: boolean=false;
   showcomposantsupprimer: boolean=false;
+  showcomposantrechercher: boolean=false;
+  fournisseurData: fournisseurComplete | null = null;
   formfournisseur!:FormGroup;
-  constructor(private ServicefournisseurService:ServicefournisseurService,private fb : FormBuilder,private ShowComposantImprimerFornisseurService:ShowComposantImprimerFornisseurService,
-    private ShowComposantsurprimmerFornisseurService:ShowComposantsurprimmerFornisseurService
+  FounisseurState$:Observable<fournisseurState> | null=null;
+  readonly fournisseurStateEnume=fournisseurStateEnume;
+  constructor(private store:Store<any>, private ServicefournisseurService:ServicefournisseurService,
+    private fb : FormBuilder,private ShowComposantImprimerFornisseurService:ShowComposantImprimerFornisseurService,
+    private ShowComposantsurprimmerFornisseurService:ShowComposantsurprimmerFornisseurService,
+    private ShowComposantrechercherFornisseurService:ShowComposantrechercherFornisseurService
   ){}
   ngOnInit(): void {
     this.ShowComposantImprimerFornisseurService.showPopup1$.subscribe((inputData) => {
@@ -27,6 +38,16 @@ export class RegistrationFournisseurFicheComponent {
       this.showcomposantsupprimer = inputData
   
     });
+    this.ShowComposantrechercherFornisseurService.showPopup1$.subscribe((inputData) => {
+      this.showcomposantrechercher = inputData
+  
+    });
+    this.ServicefournisseurService.fournisseurCompletteData$.subscribe(data => {
+      this.fournisseurData = data;
+    });
+    this.FounisseurState$=this.store.pipe(
+      map((state)=>state.fournisseurSaveReducer )
+    )
 
     this.formfournisseur=this.fb.group({
       address:this.fb.control(''),
@@ -62,10 +83,11 @@ export class RegistrationFournisseurFicheComponent {
     })
     this.formfournisseur.valueChanges.subscribe((formData: fournisseur) => {
       this.ServicefournisseurService.updateFournisseurData(formData); 
-      this.ServicefournisseurService.updateFournisseurCompleteData1(formData); 
+      this.ServicefournisseurService.updateFournisseurCompleteData1(formData,this.fournisseurData); 
     });
 
   }
+
   getDonnerFournisseur():fournisseur{
     let donfourn : fournisseur;
     donfourn=this.formfournisseur.value

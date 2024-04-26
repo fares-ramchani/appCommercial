@@ -7,7 +7,16 @@ export enum fournisseurActionsTypes{
     //delete fournisseur
     delete_fournisseur="[fournisseur] delete fournisseur",
     delete_fournisseur_Succeess="[fournisseur] delete fournisseur Success",
-    delete_fournisseur_Error="[fournisseur] delete fournisseur Error"
+    delete_fournisseur_Error="[fournisseur] delete fournisseur Error",
+    //save fournisseur
+    Save_fournisseur="[fournisseur] Save fournisseur",
+    Save_fournisseur_Succeess="[fournisseur] save fournisseur Success",
+    Save_fournisseur_Error="[fournisseur] save fournisseur Error",
+    //get fournisseur bt code
+    getfournisseur_by_code="[fournisseur] get fournisseur by code ",
+    getfournisseur_by_code_Succeess="[fournisseur] get fournisseur by code Success",
+    getfournisseur_by_code_Error="[fournisseur] get fournisseur by code Error"
+
 
 }
 export class GetAllfournisseurActions implements Action{
@@ -29,6 +38,25 @@ export class GetAllfournisseurActionsError implements Action{
     }
 }
 //delete fournisseur
+export class getfournisseurbycodesActions implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.getfournisseur_by_code;
+    constructor(public payload:number){
+
+    } 
+}
+export class getfournisseurbycodesActionsSuccess implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.getfournisseur_by_code_Succeess;
+    constructor(public payload:any){
+
+    }
+}
+export class getfournisseurbycodesActionsError implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.getfournisseur_by_code_Error;
+    constructor(public payload:string){
+
+    }
+}
+//get fournisseur bt code
 export class DeletefournisseursActions implements Action{
     type: fournisseurActionsTypes=fournisseurActionsTypes.delete_fournisseur;
     constructor(public payload:number){
@@ -47,6 +75,27 @@ export class DeletefournisseurActionsError implements Action{
 
     }
 }
+//save fournisseur
+export class SavefournisseurActions implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.Save_fournisseur;
+    constructor(public payload:any){
+
+    } 
+}
+export class SavefournisseurActionsSuccess implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.Save_fournisseur_Succeess;
+    constructor(public payload:any){
+
+    }
+}
+export class SavefournisseurActionsError implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.Save_fournisseur_Error;
+    constructor(public payload:string){
+
+    }
+}
 export type fournisseurActions=
 GetAllfournisseurActions | GetAllfournisseurActionsSuccess |GetAllfournisseurActionsError|
-DeletefournisseursActions| DeletefournisseurActionsSuccess |DeletefournisseurActionsError;
+DeletefournisseursActions| DeletefournisseurActionsSuccess |DeletefournisseurActionsError|
+SavefournisseurActions | SavefournisseurActionsSuccess |SavefournisseurActionsError|
+getfournisseurbycodesActions| getfournisseurbycodesActionsSuccess|getfournisseurbycodesActionsError;

@@ -1,13 +1,13 @@
  <div class="container">
   <div class="content">
     <form [formGroup]="formLogin" novalidate>
-      <div class="user-details">
-          <div class="input-box" style="width: 100%;">
+      <div class="user-details" >
+          <div class="input-box" >
             <span class="details">Note</span>
-              <textarea name="" id="" cols="156" rows="13"></textarea>
+              <textarea style="min-width: 100%;" name="" id="" cols="145" rows="13"></textarea>
           </div>
         </div>
-        <div class="user-details" style="width: 101.5%;">
+        <div class="user-details" style="width: 100%;">
           <div class="input-box" style="width:100%">
               <span class="details">Observations</span>
               <input type="text" placeholder="Enter ton nom" formControlName="nom" required>
@@ -16,7 +16,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Utilisateur</span>
-            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
           </div>
           <div class="input-box">
               <select class="select" style="width: 100%;" aria-label="Default select example" formControlName="domaine" >
@@ -31,7 +31,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Poste</span>
-            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
           </div>
           <div class="input-box">
               <span class="details">Tarif Famille</span>
@@ -45,7 +45,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Date</span>
-            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
           </div>
           <div class="input-box">
               <span class="details">Tarif Article</span>
@@ -59,7 +59,7 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">Heure</span>
-            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);">
+            <input type="text" placeholder="Enter ton nom" formControlName="nom"  style="background-color: rgba(0, 0, 0, 0.059);" [disabled]="true">
           </div>
         
           <div class="input-box">
@@ -73,6 +73,7 @@
 </div>
 <app-imprimer *ngIf="showcomposantImprimer"></app-imprimer>
 <app-suprimer-fournisseur *ngIf="showcomposantsupprimer"></app-suprimer-fournisseur>
+<app-rechercher-fournisseur *ngIf="showcomposantrechercher"></app-rechercher-fournisseur>
 <!-- <div class="input-box">
     <select class="select" aria-label="Default select example" formControlName="domaine" >
       <option  disabled hidden selected value="">Sélectionnez un domaine</option>

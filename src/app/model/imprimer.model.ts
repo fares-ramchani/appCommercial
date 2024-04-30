@@ -1,0 +1,16 @@
+export interface imprimer {
+    postalCode: string,
+    agent : string,
+    sortQuery: any,
+    fromCode: number,
+    toCode: number,
+    city : string,
+    country : string,
+    activity : string,
+    payment : string,
+    type : string,
+    nature : string,
+    bank : string,
+    isVATSubject : string,
+    isBlockedAccount : string,
+    }

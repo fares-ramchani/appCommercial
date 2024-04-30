@@ -22,7 +22,10 @@ export class SuprimerFournisseurComponent {
   nombrefournisseurDansUnPage = 10
   currentpage=1
   paginationParamter: paginationParamter = { perPage: this.nombrefournisseurDansUnPage, page:1 }
-  constructor(private ParamatrePaginationService:ParamatrePaginationService, private store: Store<any>, private ServicefournisseurService: ServicefournisseurService, private ShowComposantsurprimmerFornisseurService: ShowComposantsurprimmerFornisseurService) { }
+  constructor(private ParamatrePaginationService:ParamatrePaginationService,
+     private store: Store<any>,
+      private ServicefournisseurService: ServicefournisseurService, 
+      private ShowComposantsurprimmerFornisseurService: ShowComposantsurprimmerFornisseurService) { }
   ngOnInit() {
     this.fournisseurState$ = this.store.pipe(
       map((state) => state.fournisseurReducer)

@@ -224,8 +224,8 @@
     margin-bottom: 5px;
   }
   .user-details .input-box input{
-    height: 28px;
-    width: 180px;
+    height: 45px;
+    width: 100%;
     outline: none;
     font-size: 16px;
     border-radius: 10px;
@@ -329,14 +329,16 @@
       }
       
       img {
-        width: 20px;
-        height: 20px;
+        width: 35px;
+        height: 35px;
+        margin-top: -5%;
       
       
       }
       .img{
         width: 40px;
         height: 40px;
+        margin-top: -5%;
         filter: none;
       }
       
@@ -435,11 +437,10 @@
         width: 100%;
         z-index: -2;
       }
-     
       
       .button-77:after {
     
-        background-color: rgba(27, 101, 205, 0.164);
+        background-color: rgba(255, 255, 255, 0.759);
         content: "";
         bottom: 4px;
         content: "";
@@ -478,39 +479,6 @@
         cursor: default;
         opacity: .24;
       }
-      .loader {
-        width: 70px;
-        height: 70px;
-        border: 5px solid #FFF;
-        border-bottom-color:#3c97bf;
-        border-radius: 50%;
-        display: inline-block;
-        box-sizing: border-box;
-        animation: rotation 1s linear infinite;
-        margin-left: 8px;
-        }
-    
-        @keyframes rotation {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-        } 
-        mat-paginator{
-          width: 100%;
-          display: flex;
-          justify-content: center;
-          
-        }
-        @keyframes fadeOut {
-          0% { opacity: 1; }
-          100% { opacity: 0; display: none; }
-        }
-        .hide-alert {
-          animation: fadeOut 1s ease-out 2s forwards;
-        }
 
 /* @media screen and (max-width:1024px) {
   .parent{

@@ -7,6 +7,10 @@ import { RegistrationFournisseurMemoComponent } from './gestionFournisseurs/regi
 import { NavBarComponent } from './composants/nav-bar/nav-bar.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './guards/guard-authentification.guard';
+import { RegistrationclientComponent } from './gestionclient/registrationclient/registrationclient.component';
+import { RegistrationclientAutreComponent } from './gestionclient/registrationclient-autre/registrationclient-autre.component';
+import { RegistrationclientFicheComponent } from './gestionclient/registrationclient-fiche/registrationclient-fiche.component';
+import { RegistrationclientMemoComponent } from './gestionclient/registrationclient-memo/registrationclient-memo.component';
 
 const routes: Routes = [
   {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent
@@ -14,6 +18,12 @@ const routes: Routes = [
     {path :"RegistrationFournisseurAutres" , component: RegistrationFournisseurAutresComponent},
     {path :"RegistrationFournisseurFiche" , component: RegistrationFournisseurFicheComponent},
     {path :"RegistrationFournisseurMemo" , component: RegistrationFournisseurMemoComponent},
+  ]},
+  {path :"Registrationclient" , component: RegistrationclientComponent
+  ,children:[
+    {path :"RegistrationclientAutre" , component: RegistrationclientAutreComponent},
+    {path :"RegistrationclientFiche" , component: RegistrationclientFicheComponent},
+    {path :"RegistrationclientMemo" , component: RegistrationclientMemoComponent},
   ]},
   {path :"" , component: LoginComponent}
 ];

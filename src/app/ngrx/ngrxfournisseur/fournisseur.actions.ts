@@ -15,7 +15,12 @@ export enum fournisseurActionsTypes{
     //get fournisseur bt code
     getfournisseur_by_code="[fournisseur] get fournisseur by code ",
     getfournisseur_by_code_Succeess="[fournisseur] get fournisseur by code Success",
-    getfournisseur_by_code_Error="[fournisseur] get fournisseur by code Error"
+    getfournisseur_by_code_Error="[fournisseur] get fournisseur by code Error",
+    //modifier fournisseur
+    modifier_fournisseur="[fournisseur] modifier fournisseur",
+    modifier_fournisseur_Succeess="[fournisseur] modifier fournisseur Success",
+    modifier_fournisseur_Error="[fournisseur] modifier fournisseur Error",
+    
 
 
 }
@@ -94,8 +99,29 @@ export class SavefournisseurActionsError implements Action{
 
     }
 }
+//modifier fournniseur
+export class modifierfournisseurActions implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.modifier_fournisseur;
+    constructor(public payload:any){
+
+    } 
+}
+export class modifierfournisseurActionsSuccess implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.modifier_fournisseur_Succeess;
+    constructor(public payload:any){
+
+    }
+}
+export class modifierfournisseurActionsError implements Action{
+    type: fournisseurActionsTypes=fournisseurActionsTypes.modifier_fournisseur_Error;
+    constructor(public payload:string){
+
+    }
+}
+
 export type fournisseurActions=
 GetAllfournisseurActions | GetAllfournisseurActionsSuccess |GetAllfournisseurActionsError|
 DeletefournisseursActions| DeletefournisseurActionsSuccess |DeletefournisseurActionsError|
 SavefournisseurActions | SavefournisseurActionsSuccess |SavefournisseurActionsError|
-getfournisseurbycodesActions| getfournisseurbycodesActionsSuccess|getfournisseurbycodesActionsError;
+getfournisseurbycodesActions| getfournisseurbycodesActionsSuccess|getfournisseurbycodesActionsError|
+modifierfournisseurActions | modifierfournisseurActionsSuccess | modifierfournisseurActionsError ;

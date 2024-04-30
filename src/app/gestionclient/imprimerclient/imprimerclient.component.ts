@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ShowComposantImprimerFornisseurService } from 'src/app/services/show-composant-imprimer-fornisseur.service';
+import { ShowComposantimprimerclientService } from 'src/app/services/show-composantimprimerclient.service';
 
 @Component({
-  selector: 'app-imprimer',
-  templateUrl: './imprimer.component.html',
-  styleUrls: ['./imprimer.component.css']
+  selector: 'app-imprimerclient',
+  templateUrl: './imprimerclient.component.html',
+  styleUrls: ['./imprimerclient.component.css']
 })
-export class ImprimerComponent {
+export class ImprimerclientComponent {
   formImprimer!:FormGroup;
-  constructor(private ShowComposantImprimerFornisseurService:ShowComposantImprimerFornisseurService,
+  constructor(private ShowComposantimprimerclientService:ShowComposantimprimerclientService,
     private fb : FormBuilder
   ){}
   closepopup() {
-    this.ShowComposantImprimerFornisseurService.setshowpopup();
+    this.ShowComposantimprimerclientService.setshowpopup();
    
   }
   ngOnInit()

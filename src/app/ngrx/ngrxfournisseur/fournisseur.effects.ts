@@ -13,7 +13,10 @@ import {
     fournisseurActionsTypes,
     getfournisseurbycodesActions,
     getfournisseurbycodesActionsError,
-    getfournisseurbycodesActionsSuccess
+    getfournisseurbycodesActionsSuccess,
+    modifierfournisseurActions,
+    modifierfournisseurActionsError,
+    modifierfournisseurActionsSuccess
 } from "./fournisseur.actions";
 import { ParamatrePaginationService } from "src/app/services/paramatre-pagination.service";
 
@@ -85,5 +88,20 @@ export class fournisseurEffect {
             )
         )
     );
+    modifierFournisseurEffect: Observable<fournisseurActions> = createEffect(() =>
+        this.effectActions.pipe(
+            ofType(fournisseurActionsTypes.modifier_fournisseur),
+            mergeMap((action: modifierfournisseurActions) => {
+                return this.serviceFournisseurService.updateFournisseur(action.payload).pipe(
+
+                    map((fournisseur) => new modifierfournisseurActionsSuccess(fournisseur)),
+                    catchError((err) => of(new modifierfournisseurActionsError(err.message)))
+
+                )
+
+            })
+        )
+    );
 }
+
 

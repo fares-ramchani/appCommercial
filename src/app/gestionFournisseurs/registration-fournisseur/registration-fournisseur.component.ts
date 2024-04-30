@@ -17,7 +17,9 @@ export class RegistrationFournisseurComponent {
   showcomposantSideBarNavigation: boolean = false;
   formfournisseurComplete!: FormGroup;
   fournisseurData!: fournisseur;
-  constructor(private ServicefournisseurService:ServicefournisseurService,private ShowComposantSidebarNvigationService: ShowComposantSidebarNvigationService, private fb: FormBuilder,) { }
+  constructor(private ServicefournisseurService:ServicefournisseurService,
+    private ShowComposantSidebarNvigationService: ShowComposantSidebarNvigationService,
+     private fb: FormBuilder,) { }
   ngOnInit(): void {
     this.formfournisseurComplete = this.fb.group({
       code: this.fb.control(''),

@@ -6,9 +6,7 @@
   </div>
   <div style="margin-top: 25px;">
     <ng-container *ngIf="fournisseurState$ | async as state" [ngSwitch]="state.dataState">
-      <ng-container *ngSwitchCase="fournisseurStateEnume.INITIAL">
-        ksdcksdbckhb
-      </ng-container>
+     
       <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
         *ngSwitchCase="fournisseurStateEnume.LOADING">
         <span class="loader"></span>
@@ -465,9 +463,7 @@
 
 </div>
 <div *ngIf="daitaillefournisseur==2">
-
-  <div *ngIf="state.four">
-    <form [formGroup]="formfournisseurComplete" novalidate>
+  <ng-container *ngSwitchCase="fournisseurStateEnume.LOADED">
     <div class="row">
       <div class="col">
         <div class="card shadow">
@@ -481,6 +477,7 @@
             </div>
 
           </div>
+
           <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
             <table class="table align-items-center table-flush">
               <thead class="thead-light">
@@ -499,7 +496,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.code" formControlName="code" required>
+                        <input type="text"  [(ngModel)]="code" required>
 
                       </div>
                     </div>
@@ -509,7 +506,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.companyName" formControlName="companyName" required>
+                        <input type="text" [(ngModel)]="companyName" required>
 
                       </div>
                     </div>
@@ -519,7 +516,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.abbreviation" formControlName="abbreviation" required>
+                        <input type="text" [(ngModel)]="abbreviation" required>
 
                       </div>
                     </div>
@@ -529,7 +526,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.maxCredit" formControlName="abbreviation" required>
+                        <input type="text" [(ngModel)]="maxCredit" required>
 
                       </div>
                     </div>
@@ -544,7 +541,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.maxTerms" formControlName="abbreviation" required>
+                        <input type="text" [(ngModel)]="maxTerms" required>
 
                       </div>
                     </div>
@@ -555,8 +552,8 @@
 
                   <td>
                     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-                      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-                        [checked]="state.four.inProgress">
+                      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                        [checked]="state.four.inProgress" [(ngModel)]="inProgress">
 
                     </div>
 
@@ -577,7 +574,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.address" formControlName="address" required>
+                        <input type="text" [(ngModel)]="address"  required>
 
                       </div>
                     </div>
@@ -587,7 +584,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.city" formControlName="city" required>
+                        <input type="text" [(ngModel)]="city"  required>
 
                       </div>
                     </div>
@@ -597,7 +594,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.postalCode" formControlName="postalCode" required>
+                        <input type="text" [(ngModel)]="postalCode"  required>
 
                       </div>
                     </div>
@@ -607,7 +604,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.country" formControlName="postalCode" required>
+                        <input type="text" [(ngModel)]="country"  required>
 
                       </div>
                     </div>
@@ -619,7 +616,7 @@
                     <div class="user-details">
                       <div class="input-box">
 
-                        <input type="text" [value]="state.four.activity" formControlName="postalCode" required>
+                        <input type="text" [(ngModel)]="activity"  required>
 
                       </div>
                     </div>
@@ -634,7 +631,7 @@
             <div class="user-details">
               <div class="input-box">
 
-                <input type="text" [value]="state.four.responsible" formControlName="postalCode" required>
+                <input type="text" [(ngModel)]="responsible"  required>
 
               </div>
             </div>
@@ -656,7 +653,7 @@
             <div class="user-details">
               <div class="input-box">
 
-                <input type="text" [value]="state.four.phone" formControlName="postalCode" required>
+                <input type="text" [(ngModel)]="phone"  required>
 
               </div>
             </div>
@@ -667,7 +664,7 @@
             <div class="user-details">
               <div class="input-box">
 
-                <input type="text" [value]="state.four.fax" formControlName="postalCode" required>
+                <input type="text" [(ngModel)]="fax"  required>
 
               </div>
             </div>
@@ -677,7 +674,7 @@
             <div class="user-details">
               <div class="input-box">
 
-                <input type="text" [value]="state.four.email" formControlName="postalCode" required>
+                <input type="text" [(ngModel)]="email"  required>
 
               </div>
             </div>
@@ -688,7 +685,7 @@
               <div class="user-details">
                 <div class="input-box">
 
-                  <input type="text" [value]="state.four.bank" formControlName="postalCode" required>
+                  <input type="text" [(ngModel)]="bank"  required>
 
                 </div>
               </div>
@@ -701,7 +698,7 @@
             <div class="user-details">
               <div class="input-box">
 
-                <input type="text" [value]="state.four.rib" formControlName="postalCode" required>
+                <input type="text" [(ngModel)]="rib"  required>
 
               </div>
             </div>
@@ -716,7 +713,7 @@
         <div class="user-details">
           <div class="input-box">
 
-            <input type="text" [value]="state.four.domiciliation" formControlName="postalCode" required>
+            <input type="text" [(ngModel)]="domiciliation"  required>
 
           </div>
         </div>
@@ -739,7 +736,7 @@
         <div class="user-details">
           <div class="input-box">
 
-            <input type="text" [value]="state.four.fiscalID" formControlName="postalCode" required>
+            <input type="text" [(ngModel)]="fiscalID"  required>
 
           </div>
         </div>
@@ -749,7 +746,7 @@
         <div class="user-details">
           <div class="input-box">
 
-            <input type="text" [value]="state.four.payment" formControlName="postalCode" required>
+            <input type="text" [(ngModel)]="payment"  required>
 
           </div>
         </div>
@@ -759,7 +756,7 @@
         <div class="user-details">
           <div class="input-box">
 
-            <input type="text" [value]="state.four.daysCount" formControlName="postalCode" required>
+            <input type="text" [(ngModel)]="daysCount"  required>
 
           </div>
         </div>
@@ -770,7 +767,7 @@
           <div class="user-details">
             <div class="input-box">
 
-              <input type="text" [value]="state.four.delay" formControlName="postalCode" required>
+              <input type="text" [(ngModel)]="delay"  required>
 
             </div>
           </div>
@@ -783,7 +780,7 @@
         <div class="user-details">
           <div class="input-box">
 
-            <input type="text" [value]="state.four.type" formControlName="postalCode" required>
+            <input type="text" [(ngModel)]="type"  required>
 
           </div>
         </div>
@@ -797,7 +794,7 @@
     <div class="user-details">
       <div class="input-box">
 
-        <input type="text" [value]="state.four.accounting" formControlName="postalCode" required>
+        <input type="text" [(ngModel)]="accounting"  required>
 
       </div>
     </div>
@@ -820,7 +817,7 @@
     <div class="user-details">
       <div class="input-box">
 
-        <input type="text" [value]="state.four.nature" formControlName="postalCode" required>
+        <input type="text" [(ngModel)]="nature"  required>
 
       </div>
     </div>
@@ -830,7 +827,7 @@
     <div class="user-details">
       <div class="input-box">
 
-        <input type="text" [value]="state.four.currency" formControlName="postalCode" required>
+        <input type="text" [(ngModel)]="currency"  required>
 
       </div>
     </div>
@@ -840,7 +837,7 @@
     <div class="user-details">
       <div class="input-box">
 
-        <input type="text" [value]="state.four.agent" formControlName="postalCode" required>
+        <input type="text" [(ngModel)]="agent"  required>
 
       </div>
     </div>
@@ -849,8 +846,8 @@
   <td>
     <div class="avatar-group">
       <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-        <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-          [checked]="state.four.isVATSubject">
+        <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+          [checked]="state.four.isVATSubject" [(ngModel)]="isVATSubject" >
 
       </div>
 
@@ -860,8 +857,8 @@
     <div class="d-flex align-items-center">
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.isBlockedAccount">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+        [checked]="state.four.isBlockedAccount"  [(ngModel)]="isBlockedAccount">
 
     </div>
 
@@ -873,8 +870,8 @@
 
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.isFODECExemption">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+        [checked]="state.four.isFODECExemption" [(ngModel)]="isFODECExemption">
 
     </div>
 
@@ -894,24 +891,24 @@
 <tr>
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.isVATExemption">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+        [checked]="state.four.isVATExemption" [(ngModel)]="isVATExemption">
 
     </div>
 
   </td>
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.isCICTExemption">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+        [checked]="state.four.isCICTExemption" [(ngModel)]="isCICTExemption">
 
     </div>
 
   </td>
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.isStampExemption">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+        [checked]="state.four.isStampExemption" [(ngModel)]="isStampExemption">
 
     </div>
 
@@ -919,8 +916,8 @@
   <td>
     <div class="avatar-group">
       <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-        <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-          [checked]="state.four.option1">
+        <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+          [checked]="state.four.option1" [(ngModel)]="option1">
 
       </div>
 
@@ -930,8 +927,8 @@
     <div class="d-flex align-items-center">
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.option2">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+        [checked]="state.four.option2" [(ngModel)]="option2">
 
     </div>
 
@@ -943,8 +940,8 @@
 
   <td>
     <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
-      <input class="form-check-input" type="checkbox" id="flexCheckDefault" formControlName="inProgress"
-        [checked]="state.four.option3">
+      <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+        [checked]="state.four.option3" [(ngModel)]="option3">
 
     </div>
   </td>
@@ -965,6 +962,12 @@
 </div>
 <div style="width: 100%; display: flex; justify-content: end;">
   <a class="button-77" role="button">
+    <div (click)="modifierFournisseur()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>modifier</h6>
+    </div>
+  </a>
+  <a class="button-77" role="button">
     <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
       <img src="../assets/images/retournericon.png" alt="">
       <h6>Retourner</h6>
@@ -978,17 +981,562 @@
 </div>
 
 </div>
-</form>
-
-</div>
-
-</div>
+  </ng-container>
 
 
-</ng-container>
-</ng-container>
+<div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
+        *ngSwitchCase="fournisseurStateEnume.LOADING">
+        <span class="loader"></span>
+      </div>
+     
+    </div>
+    <div *ngIf="daitaillefournisseur==3">
+      <ng-container *ngSwitchCase="fournisseurStateEnume.LOADED">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </symbol>
+        </svg>
+        <div class="alert alert-success hide-alert" style="position: fixed; height: 80px; display: flex;  align-items: center; justify-content: center; top:0; right: 45%; " role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div>
+            Votre modification a été effectué avec succès
+          </div>
+        </div>
+    
+    
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0"> founisseur : {{state.four.companyName}}</h3>
+                <div style="width: 100%; display: flex;justify-content: center;">
+                  <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                    [(ngModel)]="searchText">
+                  <div class="btn btn-light" style="margin-left: 5px;" (click)="getFournisseurBycode()"> <img
+                      src="../assets/images/rechercher.png" alt=""></div>
+                </div>
+    
+              </div>
+    
+              <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">companyName</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">abbreviation</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxCredit</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">maxTerms</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">inProgress</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text"  [(ngModel)]="code" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="companyName" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="abbreviation" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="maxCredit" required>
+    
+                          </div>
+                        </div>
+    
+    
+    
+    
+                      </td>
+    
+    
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="maxTerms" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+    
+    
+    
+                      <td>
+                        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+                          <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+                            [checked]="state.four.inProgress" [(ngModel)]="inProgress">
+    
+                        </div>
+    
+                      </td>
+    
+    
+                    </tr>
+                    <tr>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">address</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">city</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">postal Code</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">country</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">activity</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">responsible</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="address"  required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="city"  required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="postalCode"  required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="country"  required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="d-flex align-items-center">
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="activity"  required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+              </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+    
+              <td>
+                <div class="user-details">
+                  <div class="input-box">
+    
+                    <input type="text" [(ngModel)]="responsible"  required>
+    
+                  </div>
+                </div>
+    
+              </td>
+            </div>
+            </td>
+            </tr>
+            <tr>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">phone</th>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fax</th>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">email</th>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">bank</th>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">rib</th>
+              <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">domiciliation</th>
+            </tr>
+            <tr>
+              <td>
+                <div class="user-details">
+                  <div class="input-box">
+    
+                    <input type="text" [(ngModel)]="phone"  required>
+    
+                  </div>
+                </div>
+    
+    
+              </td>
+              <td>
+                <div class="user-details">
+                  <div class="input-box">
+    
+                    <input type="text" [(ngModel)]="fax"  required>
+    
+                  </div>
+                </div>
+    
+              </td>
+              <td>
+                <div class="user-details">
+                  <div class="input-box">
+    
+                    <input type="text" [(ngModel)]="email"  required>
+    
+                  </div>
+                </div>
+    
+              </td>
+              <td>
+                <div class="avatar-group">
+                  <div class="user-details">
+                    <div class="input-box">
+    
+                      <input type="text" [(ngModel)]="bank"  required>
+    
+                    </div>
+                  </div>
+    
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+              <td>
+                <div class="user-details">
+                  <div class="input-box">
+    
+                    <input type="text" [(ngModel)]="rib"  required>
+    
+                  </div>
+                </div>
+    
+              </td>
+          </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+    
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+    
+                <input type="text" [(ngModel)]="domiciliation"  required>
+    
+              </div>
+            </div>
+    
+          </td>
+        </div>
+        </td>
+        </tr>
+        <tr>
+        <tr>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">fiscalID</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">payment</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">daysCount</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">delay</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">type</th>
+          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">accounting</th>
+        </tr>
+        <tr>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+    
+                <input type="text" [(ngModel)]="fiscalID"  required>
+    
+              </div>
+            </div>
+    
+          </td>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+    
+                <input type="text" [(ngModel)]="payment"  required>
+    
+              </div>
+            </div>
+    
+          </td>
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+    
+                <input type="text" [(ngModel)]="daysCount"  required>
+    
+              </div>
+            </div>
+    
+          </td>
+          <td>
+            <div class="avatar-group">
+              <div class="user-details">
+                <div class="input-box">
+    
+                  <input type="text" [(ngModel)]="delay"  required>
+    
+                </div>
+              </div>
+    
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+          <td>
+            <div class="user-details">
+              <div class="input-box">
+    
+                <input type="text" [(ngModel)]="type"  required>
+    
+              </div>
+            </div>
+          </td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+    
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+    
+            <input type="text" [(ngModel)]="accounting"  required>
+    
+          </div>
+        </div>
+    
+      </td>
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <tr>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">nature</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">currency</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">agent</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATSubject</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isBlockedAccount</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isFODECExemption</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+    
+            <input type="text" [(ngModel)]="nature"  required>
+    
+          </div>
+        </div>
+    
+      </td>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+    
+            <input type="text" [(ngModel)]="currency"  required>
+    
+          </div>
+        </div>
+    
+      </td>
+      <td>
+        <div class="user-details">
+          <div class="input-box">
+    
+            <input type="text" [(ngModel)]="agent"  required>
+    
+          </div>
+        </div>
+    
+      </td>
+      <td>
+        <div class="avatar-group">
+          <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+              [checked]="state.four.isVATSubject" [(ngModel)]="isVATSubject" >
+    
+          </div>
+    
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+            [checked]="state.four.isBlockedAccount"  [(ngModel)]="isBlockedAccount">
+    
+        </div>
+    
+      </td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+    
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+            [checked]="state.four.isFODECExemption" [(ngModel)]="isFODECExemption">
+    
+        </div>
+    
+      </td>
+      </div>
+      </td>
+    </tr>
+    <tr>
+    <tr>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isVATExemption</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isCICTExemption</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">isStampExemption</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option1</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option2</th>
+      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">option3</th>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+            [checked]="state.four.isVATExemption" [(ngModel)]="isVATExemption">
+    
+        </div>
+    
+      </td>
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+            [checked]="state.four.isCICTExemption" [(ngModel)]="isCICTExemption">
+    
+        </div>
+    
+      </td>
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault"
+            [checked]="state.four.isStampExemption" [(ngModel)]="isStampExemption">
+    
+        </div>
+    
+      </td>
+      <td>
+        <div class="avatar-group">
+          <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+              [checked]="state.four.option1" [(ngModel)]="option1">
+    
+          </div>
+    
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+            [checked]="state.four.option2" [(ngModel)]="option2">
+    
+        </div>
+    
+      </td>
+      </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+    
+      <td>
+        <div class="form-check" style=" width: 100%; display: flex;justify-content: center; ">
+          <input class="form-check-input" type="checkbox" id="flexCheckDefault" 
+            [checked]="state.four.option3" [(ngModel)]="option3">
+    
+        </div>
+      </td>
+      </div>
+      </td>
+    </tr>
+    </tbody>
+    </table>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    <div>
+    </div>
+    <div style="width: 100%; display: flex; justify-content: end;">
+      <a class="button-77" role="button">
+        <div (click)="modifierFournisseur()" style="display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/images/retournericon.png" alt="">
+          <h6>modifier</h6>
+        </div>
+      </a>
+      <a class="button-77" role="button">
+        <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/images/retournericon.png" alt="">
+          <h6>Retourner</h6>
+        </div>
+      </a>
+    
+    </div>
+    </div>
+    
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    </ng-container>
+    
 
-</div>
+    </div>
+
+
 
 
 

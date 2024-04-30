@@ -24,7 +24,14 @@ import { AppHttpInterceptor } from './interceptor/app-http.interceptor';
 import { fournisseurReducer, fournisseurSaveReducer } from './ngrx/ngrxfournisseur/fournisseur.reducer';
 import { fournisseurEffect } from './ngrx/ngrxfournisseur/fournisseur.effects';
 import {MatPaginatorModule} from "@angular/material/paginator";
-import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher-fournisseur/rechercher-fournisseur.component'
+import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher-fournisseur/rechercher-fournisseur.component';
+import { RegistrationclientComponent } from './gestionclient/registrationclient/registrationclient.component';
+import { RegistrationclientFicheComponent } from './gestionclient/registrationclient-fiche/registrationclient-fiche.component';
+import { RegistrationclientMemoComponent } from './gestionclient/registrationclient-memo/registrationclient-memo.component';
+import { RegistrationclientAutreComponent } from './gestionclient/registrationclient-autre/registrationclient-autre.component';
+import { SupprimerclientComponent } from './gestionclient/supprimerclient/supprimerclient.component';
+import { RechercherclientComponent } from './gestionclient/rechercherclient/rechercherclient.component';
+import { ImprimerclientComponent } from './gestionclient/imprimerclient/imprimerclient.component'
 
 @NgModule({
   declarations: [
@@ -40,7 +47,14 @@ import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher
     ClickoutSideBarNavigationDirective,
     LoginComponent,
     SuprimerFournisseurComponent,
-    RechercherFournisseurComponent
+    RechercherFournisseurComponent,
+    RegistrationclientComponent,
+    RegistrationclientFicheComponent,
+    RegistrationclientMemoComponent,
+    RegistrationclientAutreComponent,
+    SupprimerclientComponent,
+    RechercherclientComponent,
+    ImprimerclientComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +63,8 @@ import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher
     ReactiveFormsModule,
     FormsModule,
     MatPaginatorModule,
-    StoreModule.forRoot({loginReducer:loginReducer,fournisseurReducer:fournisseurReducer,fournisseurSaveReducer:fournisseurSaveReducer}),
+    StoreModule.forRoot({loginReducer:loginReducer,fournisseurReducer:fournisseurReducer,
+      fournisseurSaveReducer:fournisseurSaveReducer}),
     EffectsModule.forRoot([loginEffects,fournisseurEffect]),
     StoreDevtoolsModule.instrument(),
   ],

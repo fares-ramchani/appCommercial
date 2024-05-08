@@ -14,6 +14,9 @@ import { ShowComposantsupprimerclientService } from 'src/app/services/show-compo
 import { ServiceclientService } from 'src/app/services/serviceclient.service';
 import { clientComplete } from 'src/app/model/clientComplete.model';
 import { ShowComposantrechercherclientService } from 'src/app/services/show-composantrechercherclient.service';
+import { ShowComposantsupprimermagasinService } from 'src/app/services/show-composantsupprimermagasin.service';
+import { ShowComposantrecherchermagasinService } from 'src/app/services/show-composantrecherchermagasin.service';
+import { ShowComposantimprimermagasinService } from 'src/app/services/show-composantimprimermagasin.service';
 
 @Component({
   selector: 'app-side-bar-option',
@@ -34,6 +37,9 @@ export class SideBarOptionComponent {
     private ShowComposantsupprimerclientService: ShowComposantsupprimerclientService,
     private ShowComposantrechercherclientService:ShowComposantrechercherclientService,
     private ServiceclientService:ServiceclientService,
+    private ShowComposantsupprimermagasinService:ShowComposantsupprimermagasinService,
+    private ShowComposantrecherchermagasinService: ShowComposantrecherchermagasinService,
+    private ShowComposantimprimermagasinService:ShowComposantimprimermagasinService,
     private router: Router) { }
 
   closepopup() {
@@ -41,6 +47,9 @@ export class SideBarOptionComponent {
       this.ShowComposantImprimerFornisseurService.setshowpopup();
     }else if(this.urlactuell.startsWith("/Registrationclient")){
       this.ShowComposantimprimerclientService.setshowpopup();
+
+    }else if(this.urlactuell.startsWith("/Registrationmagasin")){
+      this.ShowComposantimprimermagasinService.setshowpopup();
 
     }
 
@@ -51,6 +60,9 @@ export class SideBarOptionComponent {
     }else if(this.urlactuell.startsWith("/Registrationclient")){
       this.ShowComposantsupprimerclientService.setshowpopup();
 
+    }else if(this.urlactuell.startsWith("/Registrationmagasin")){
+      this.ShowComposantsupprimermagasinService.setshowpopup();
+
     }
 
   }
@@ -59,6 +71,9 @@ export class SideBarOptionComponent {
       this.ShowComposantrechercherFornisseurService.setshowpopup();
     }else if(this.urlactuell.startsWith("/Registrationclient")){
       this.ShowComposantrechercherclientService.setshowpopup();
+
+    }else if(this.urlactuell.startsWith("/Registrationmagasin")){
+      this.ShowComposantrecherchermagasinService.setshowpopup();
 
     }
   

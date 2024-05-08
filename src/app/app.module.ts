@@ -31,7 +31,11 @@ import { RegistrationclientMemoComponent } from './gestionclient/registrationcli
 import { RegistrationclientAutreComponent } from './gestionclient/registrationclient-autre/registrationclient-autre.component';
 import { SupprimerclientComponent } from './gestionclient/supprimerclient/supprimerclient.component';
 import { RechercherclientComponent } from './gestionclient/rechercherclient/rechercherclient.component';
-import { ImprimerclientComponent } from './gestionclient/imprimerclient/imprimerclient.component'
+import { ImprimerclientComponent } from './gestionclient/imprimerclient/imprimerclient.component';
+import { RechercheMagasinComponent } from './gestionMagasins/recherche-magasin/recherche-magasin.component';
+import { ImprimermagasinComponent } from './gestionMagasins/imprimermagasin/imprimermagasin.component';
+import { SupprimermagasinComponent } from './gestionMagasins/supprimermagasin/supprimermagasin.component';
+import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component'
 
 @NgModule({
   declarations: [
@@ -54,7 +58,11 @@ import { ImprimerclientComponent } from './gestionclient/imprimerclient/imprimer
     RegistrationclientAutreComponent,
     SupprimerclientComponent,
     RechercherclientComponent,
-    ImprimerclientComponent
+    ImprimerclientComponent,
+    RechercheMagasinComponent,
+    ImprimermagasinComponent,
+    SupprimermagasinComponent,
+    RegistrationmagasinComponent
   ],
   imports: [
     BrowserModule,

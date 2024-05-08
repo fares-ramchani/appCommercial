@@ -40,6 +40,6 @@ export class ImprimerComponent {
 
 }
 imprimer(){
-   window.print();
+   window.print(); 
 }
 }

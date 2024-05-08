@@ -1,0 +1,58 @@
+<app-nav-bar></app-nav-bar>
+<div  style="display: flex;width: 100%; background-color: #70b1fb; flex-direction: row-reverse; height: 93.2vh;">
+<div>
+    <app-side-bar-option ></app-side-bar-option>
+</div>
+<div class="container">
+    <div class="title">Registration magasin</div>
+    <div class="content">
+      <form [formGroup]="formmagasin" novalidate>
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <div class="user-details">
+                    <div class="input-box" >
+                      <span class="details">Magasin</span>
+                      <input type="text" placeholder="Enter code magasin" formControlName="magasin" required>
+                    </div>
+                  </div>
+                  <div class="user-details">
+                    <div class="input-box">
+                      <span class="details">Libellé</span>
+                      <input type="text" placeholder="entrer nom magasin" formControlName="libelle" required >
+                    </div>
+                  </div>
+            </div>
+            <div style="margin-top: 100px;">
+                <div class="user-details">
+                    <div class="input-box">
+                      <span class="details">Utilisateur</span>
+                      <input type="text" [placeholder]="utilisateur"  [disabled]="true" >
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Date</span>
+                        <input type="text" [placeholder]="currentDate"  [disabled]="true"  >
+                      </div>
+                  </div>
+                  <div class="user-details">
+                    <div class="input-box">
+                      <span class="details">Post</span>
+                      <input type="text" [placeholder]="poste" [disabled]="true" >
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Heure</span>
+                        <input type="text" [placeholder]="currentTime"  [disabled]="true"  >
+                      </div>
+                  </div>
+                 
+            </div>
+
+        </div>
+       
+       
+      </form>
+    </div>
+  </div>
+</div>
+<app-supprimermagasin *ngIf="showcomposantsupprimer"></app-supprimermagasin>
+<app-recherche-magasin *ngIf="showcomposantrechercher"></app-recherche-magasin>
+<app-imprimermagasin *ngIf="showcomposantImprimer"></app-imprimermagasin>

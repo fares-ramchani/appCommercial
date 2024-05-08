@@ -1,6 +1,9 @@
 <app-nav-bar></app-nav-bar>
 <form [formGroup]="formfournisseurComplete" novalidate>
-<div (click)="closepopup()" style="display: flex;width: 100%; background-color: #70b1fb;">
+<div (click)="closepopup()" style="display: flex;width: 100%; background-color: #70b1fb; flex-direction: row-reverse;">
+    <div>
+        <app-side-bar-option ></app-side-bar-option>
+    </div>
     <div style="display: flex;flex-direction: column; width:100%; ">
         <div style="display: flex; width: 100%; ">
             
@@ -49,9 +52,7 @@
             <router-outlet></router-outlet>
         </div>
     </div>
-    <div>
-        <app-side-bar-option ></app-side-bar-option>
-    </div>
+    
 
 </div>
 </form>

@@ -11,6 +11,7 @@ import { RegistrationclientComponent } from './gestionclient/registrationclient/
 import { RegistrationclientAutreComponent } from './gestionclient/registrationclient-autre/registrationclient-autre.component';
 import { RegistrationclientFicheComponent } from './gestionclient/registrationclient-fiche/registrationclient-fiche.component';
 import { RegistrationclientMemoComponent } from './gestionclient/registrationclient-memo/registrationclient-memo.component';
+import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component';
 
 const routes: Routes = [
   {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent
@@ -25,6 +26,7 @@ const routes: Routes = [
     {path :"RegistrationclientFiche" , component: RegistrationclientFicheComponent},
     {path :"RegistrationclientMemo" , component: RegistrationclientMemoComponent},
   ]},
+  {path :"Registrationmagasin" ,component:RegistrationmagasinComponent},
   {path :"" , component: LoginComponent}
 ];
 

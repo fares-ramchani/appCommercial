@@ -14,6 +14,9 @@ import {
     getfournisseurbycodesActions,
     getfournisseurbycodesActionsError,
     getfournisseurbycodesActionsSuccess,
+    imprimerfournisseurActions,
+    imprimerfournisseurActionsError,
+    imprimerfournisseurActionsSuccess,
     modifierfournisseurActions,
     modifierfournisseurActionsError,
     modifierfournisseurActionsSuccess
@@ -48,7 +51,6 @@ export class fournisseurEffect {
             mergeMap((action: DeletefournisseursActions) => {
                 return this.serviceFournisseurService.deletefournisseurByCode(action.payload).pipe(
                     mergeMap(() => {
-                        // Dispatch GetAllfournisseurActions after successful deletion
                         const aa = { perPage: 10, page: this.ParamatrePaginationService.currentpage1() };
                         return of(new GetAllfournisseurActions(aa));
                     }),
@@ -96,6 +98,20 @@ export class fournisseurEffect {
 
                     map((fournisseur) => new modifierfournisseurActionsSuccess(fournisseur)),
                     catchError((err) => of(new modifierfournisseurActionsError(err.message)))
+
+                )
+
+            })
+        )
+    );
+    imprimerFournisseurEffect: Observable<fournisseurActions> = createEffect(() =>
+        this.effectActions.pipe(
+            ofType(fournisseurActionsTypes.imprimer_fournisseur),
+            mergeMap((action: imprimerfournisseurActions) => {
+                return this.serviceFournisseurService.getdonnerImprimer(action.payload).pipe(
+
+                    map((fournisseur) => new imprimerfournisseurActionsSuccess(fournisseur)),
+                    catchError((err) => of(new imprimerfournisseurActionsError(err.message)))
 
                 )
 

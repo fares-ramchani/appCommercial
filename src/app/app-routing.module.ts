@@ -12,6 +12,8 @@ import { RegistrationclientAutreComponent } from './gestionclient/registrationcl
 import { RegistrationclientFicheComponent } from './gestionclient/registrationclient-fiche/registrationclient-fiche.component';
 import { RegistrationclientMemoComponent } from './gestionclient/registrationclient-memo/registrationclient-memo.component';
 import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component';
+import { ModepaiementComponent } from './gestionpaiement/modepaiement/modepaiement.component';
+import { RegistrationfamillesComponent } from './gestionFamilles/registrationfamilles/registrationfamilles.component';
 
 const routes: Routes = [
   {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent
@@ -27,6 +29,8 @@ const routes: Routes = [
     {path :"RegistrationclientMemo" , component: RegistrationclientMemoComponent},
   ]},
   {path :"Registrationmagasin" ,component:RegistrationmagasinComponent},
+  {path :"Modepaiement" ,component:ModepaiementComponent},
+  {path :"Registrationfamilles" ,component:RegistrationfamillesComponent},
   {path :"" , component: LoginComponent}
 ];
 

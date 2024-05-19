@@ -7,10 +7,20 @@ import { ShowComposantSidebarNvigationService } from 'src/app/services/show-comp
   styleUrls: ['./side-barnavigatio.component.css']
 })
 export class SideBarnavigatioComponent {
+  showcomposantSideBarNavigation: boolean=false;
   constructor(private ShowComposantSidebarNvigationService:ShowComposantSidebarNvigationService){}
   closepopup() {
     this.ShowComposantSidebarNvigationService.setshowpopup();
    
+  }
+  ngOnInit(): void {
+
+    this.ShowComposantSidebarNvigationService.showPopup1$.subscribe((inputData) => {
+      this.showcomposantSideBarNavigation = inputData
+      console.log(this.showcomposantSideBarNavigation)
+  
+      
+    });
   }
 
 }

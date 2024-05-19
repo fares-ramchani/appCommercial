@@ -1,0 +1,202 @@
+<app-nav-bar></app-nav-bar>
+<div style="display: flex;width: 100%; background-color: #70b1fb; flex-direction: row-reverse; height: 93.2vh;">
+    <div>
+        <app-side-bar-option></app-side-bar-option>
+    </div>
+    <div class="container">
+        <div class="title">Registration Familles</div>
+        <div class="content">
+            <form [formGroup]="formfamille" novalidate>
+                <div class="user-details">
+                    <div class="input-box" style="width: 100%;">
+                        <span class="details">Code Famille</span>
+                        <input type="text" placeholder="Enter Adresse" formControlName="CodeFamille" required>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box" style="width: 100%;">
+                        <span class="details">Libellé Famille</span>
+                        <input type="text" placeholder="Enter Adresse" formControlName="LibelléFamille" required>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box" style=" display: flex; align-items: center; margin-top: 20px; ">
+                        <input style="width: 10%; " type="checkbox" placeholder="Enter ton nom"
+                            formControlName="Margesurvente" required>
+                        <span class="details" style="margin-left: 20px;">Marge sur vente(Oui/Non)</span>
+                    </div>
+                
+                    <div class="input-box">
+                        <span class="details">Calcul prix de vente sur</span>
+                        <input type="text" placeholder="Enter Code Postale" formControlName="Calculprixdevente" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">calcul prix minimal sur </span>
+                        <input type="text" placeholder="Enter Pays" formControlName="calculprixminimal" required>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Fodec/Achat</span>
+                        <input type="number" placeholder="0.00%" formControlName="FodecAchat" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Frais</span>
+                        <input type="number" placeholder="0.00%" formControlName="Frais" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">frais fixe </span>
+                        <input type="number" placeholder="0.00%" formControlName="fraisfixe" required>
+                    </div>
+                </div>
+                <div class="user-details user-details22">
+                    <div class="input-box">
+                        <span class="details">Marge de vente</span>
+                        <input type="number" placeholder="0.00%" formControlName="Margedevente" required>
+                    </div>
+                    
+                    <div class="input-box" style=" display: flex; align-items: center; margin-top: 20px; ">
+                        <input style="width: 10%; " type="checkbox" placeholder="Enter ton nom"
+                            formControlName="plusfrais" required>
+                        <span class="details" style="margin-left: 20px;">+ plus frais </span>
+                    </div>
+                
+                </div>
+                <div class="user-details">
+                    <div class="input-box" style="width: 100%;">
+                        <span class="details">Fodec</span>
+                        <input type="number" placeholder="0.00%" formControlName="Fodec" required>
+                    </div>
+                </div>
+                <div class="user-details user-details22">
+                    <div class="input-box">
+                        <span class="details">TVA</span>
+                        <input type="number" placeholder="0.00%" formControlName="TVA" required>
+                    </div>
+                    <div class="input-box" style=" display: flex; align-items: center; margin-top: 20px; ">
+                        <input style="width: 10%;" type="checkbox" placeholder="Enter ton nom"
+                            formControlName="soumisalamajorationdelaTVA" required>
+                        <span class="details" style="margin-left: 20px;">soumis a la majoration de la TVA </span>
+                    </div>
+                </div>
+                <div class="user-details user-details2">
+                    <div class="input-box">
+                        <span class="details">CICT</span>
+                        <input type="number" placeholder="0.00%" formControlName="CICT"  required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Marge minimale</span>
+                        <input type="number" placeholder="0.00%" formControlName="Margeminimale" required>
+                    </div>
+                </div>
+                <div class="user-details user-details4">
+                    <div class="input-box">
+                        <span class="details">Marge2</span>
+                        <input type="number" placeholder="0.00%" formControlName="Marge2" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 1</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise1M2" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 2</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise2M2" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 3</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise3M2" required>
+                    </div>
+                </div>
+                <div class="user-details user-details4">
+                    <div class="input-box">
+                        <span class="details">Marge 3</span>
+                        <input type="number" placeholder="0.00%" formControlName="Marge3" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 1</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise1M3" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 2</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise2M3" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 3</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise3M3" required>
+                    </div>
+                </div>
+                <div class="user-details user-details4">
+                    <div class="input-box">
+                        <span class="details">Marge 4</span>
+                        <input type="number" placeholder="0.00%" formControlName="Marge4" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 1</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise1M4" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 2</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise2M4" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 3</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise3M4" required>
+                    </div>
+                </div>
+                <div class="user-details user-details4">
+                    <div class="input-box">
+                        <span class="details">Marge 5</span>
+                        <input type="number" placeholder="0.00%" formControlName="Marge5" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 1</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise1M5" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 2</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise2M5" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Remise 3</span>
+                        <input type="number" placeholder="0.00%" formControlName="Remise3M5" required>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Compte Comptable</span>
+                        <input type="text" placeholder="entrer nom magasin" formControlName="CompteComptable" required>
+                    </div>
+                </div>
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Intitulé du compte</span>
+                        <input type="text" placeholder="entrer nom magasin" formControlName="Intituléducompte" required>
+                    </div>
+                </div>
+                <div class="user-details user-details2">
+                    <div class="input-box">
+                        <span class="details">Utilisateur</span>
+                        <input type="text" [placeholder]="utilisateur" [disabled]="true">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Date</span>
+                        <input type="text" [placeholder]="currentDate" [disabled]="true">
+                    </div>
+                </div>
+                <div class="user-details user-details2">
+                    <div class="input-box">
+                        <span class="details">Post</span>
+                        <input type="text" [placeholder]="poste" [disabled]="true">
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Heure</span>
+                        <input type="text" [placeholder]="currentTime" [disabled]="true">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<app-imprimerfamilles *ngIf="showcomposantImprimer"></app-imprimerfamilles>
+<app-recherchefamilles *ngIf="showcomposantrechercher"></app-recherchefamilles>
+<app-supprimerfamilles *ngIf="showcomposantsupprimer"></app-supprimerfamilles>

@@ -16,6 +16,7 @@ export class NavBarComponent {
 
     this.ShowComposantSidebarNvigationService.showPopup1$.subscribe((inputData) => {
       this.showcomposantSideBarNavigation = inputData
+      console.log(this.showcomposantSideBarNavigation)
   
       
     });

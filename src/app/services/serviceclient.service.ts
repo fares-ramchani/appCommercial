@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { client } from '../model/client.model';
 import { clientComplete } from '../model/clientComplete.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { paramatrePaginationClient } from '../model/paramatrePaginationClient.model';
 
 @Injectable({
   providedIn: 'root'
@@ -74,5 +75,25 @@ export class ServiceclientService {
           this.clientCompleteData.next(clientComplete10);
         }
         
+      }
+      public getfournisseurParpagination(paramatrePaginationClient:paramatrePaginationClient):Observable<any>{
+        return this.http.post("http://localhost:8000/management/logged-in-user/get-clients-by-pagination",paramatrePaginationClient);
+    
+      }
+      public deletefournisseurByCode(codeclient:number):Observable<any>{
+        return this.http.delete<any>("http://localhost:8000/management/logged-in-user/delete-client/"+codeclient);
+      }
+      public saveFournisseur(client:any):Observable<any>{
+        return this.http.post<any>("http://localhost:8000/management/logged-in-user/create-client",client);
+      }
+      public getFournisseurByCode(codeclient:number):Observable<any>{
+        return this.http.get<any>("http://localhost:8000/management/logged-in-user/get-client/"+codeclient);
+      }
+      public updateFournisseur(client:any):Observable<any>{
+        return this.http.put<any>("http://localhost:8000/management/logged-in-user/update-client/"+client.code,client);
+      
+      }
+      public getdonnerImprimer(donnerimprimer:any):Observable<any>{
+        return this.http.post<any>("http://localhost:8000/management/logged-in-user/printing-clients",donnerimprimer);
       }
 }

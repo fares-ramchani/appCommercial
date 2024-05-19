@@ -38,5 +38,12 @@ export class RegistrationclientComponent {
      
     });
   }
+  saveclient(){
+    let clientComplete:clientComplete=this.formclientComplete.value
+    if(this.clientData!=null){
+      clientComplete.client=this.clientData
+    }
+  
+  }
 
 }

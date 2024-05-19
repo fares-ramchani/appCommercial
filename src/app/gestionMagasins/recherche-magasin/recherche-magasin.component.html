@@ -1,7 +1,420 @@
 <div id="container">
-    <div mat-dialog-actions
-      style="width: 80%;display: flex;justify-content: space-between;height: 26px; background: linear-gradient(135deg, #4a7ff1, #74c0f9); ; position: fixed;">
-      <div class="title" style="margin-left: 4px;">fiche de magasin (rechercher)</div>
-      <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close" (click)="closepopup()"></button>
+  <div mat-dialog-actions
+    style="width: 80%;display: flex;justify-content: space-between;height: 26px; background: linear-gradient(135deg, #4a7ff1, #74c0f9); ; position: fixed;">
+    <div class="title" style="margin-left: 4px;">fiche de magasin (rechercher)</div>
+    <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close" (click)="closepopup()"></button>
+  </div>
+  <div style="margin-top: 25px;">
+    <ng-container *ngIf="magasinState$ | async as state" [ngSwitch]="state.dataState">
+     
+      <div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
+        *ngSwitchCase="magasinStateEnume.LOADING">
+        <span class="loader"></span>
+      </div>
+      <ng-container *ngSwitchCase="magasinStateEnume.LOADED">
+        <div *ngIf="daitailleclient==0">
+          <div *ngIf="state.magasin!=null">
+            <div class="row">
+              <div class="col">
+                <div class="card shadow">
+                  <div class="card-header border-0">
+                    <h3 class="mb-0">liste de magasin</h3>
+                    <div style="width: 100%; display: flex;justify-content: center;">
+                      <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                        [(ngModel)]="searchText">
+                      <div class="btn btn-light" style="margin-left: 5px;" (click)="getmagasinBycode()"> <img
+                          src="../assets/images/rechercher.png" alt=""></div>
+                    </div>
+
+                  </div>
+                  <div class="table-responsive" style="height: 75vh; max-height: 71.3vh ;">
+                    <table class="table align-items-center table-flush">
+                      <thead class="thead-light">
+                        <tr>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code magasin</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">magasin</th>
+                          <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor=" let Client of state.magasin.stores">
+                          <th scope="row">
+                            <div class="media align-items-center">
+                              <div class="media-body">
+                                {{Client.store}}
+                              </div>
+                            </div>
+                          </th>
+                          <td>
+                            {{Client.storeLabel}}
+                          </td>
+                     
+                <td>
+                  <div class="d-flex align-items-center">
+                    <button (click)="showdaitaillemagasin(Client.store)" class="btn btn-light">
+                      <img src="../assets/images/yeuxicons.png" alt="">
+                    </button>
+                  </div>
+                </td>
+                <td>
+                  <div class="d-flex align-items-center">
+                    <button (click)="showdaitaillemagasinupdate(Client.store)" class="btn btn-light">
+                      <img src="../assets/images/modifierIcons.png" alt="">
+                    </button>
+                  </div>
+                </td>
+                </tr>
+                <tr>
+                  </tbody>
+                  </table>
+              </div>
+              <mat-paginator [length]="state.magasin.count" [pageSize]="nombremagasinDansUnPage"
+                [pageIndex]="currentpage-1" (page)="onchangepage($event)"></mat-paginator>
+              <div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+  </div>
+
+  <div *ngIf="state.four">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> magasin : {{state.four.storeLabel}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getmagasinBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code magasin</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">magasin</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col"></th>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">
+                    <div class="media align-items-center">
+                      <div class="media-body">
+                        {{state.four.store}}
+                      </div>
+                    </div>
+                  </th>
+                  <td>
+                    {{state.four.storeLabel}}
+                  </td>
+ 
+
+        <td>
+          <div class="d-flex align-items-center">
+            <button (click)="showdaitaillemagasin(state.four.store)" class="btn btn-light">
+              <img src="../assets/images/yeuxicons.png" alt="">
+            </button>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <button (click)="showdaitaillemagasinupdate(state.four.store)" class="btn btn-light">
+              <img src="../assets/images/modifierIcons.png" alt="">
+            </button>
+          </div>
+        </td>
+        </tr>
+        <tr>
+          </tbody>
+          </table>
+      </div>
+      <div style="width: 100%; display: flex; justify-content: end;">
+        <a class="button-77" role="button">
+          <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+            <img src="../assets/images/retournericon.png" alt="">
+            <h6>Retourner</h6>
+          </div>
+        </a>
+
+      </div>
+
+      <div>
+      </div>
     </div>
+  </div>
 </div>
+
+</div>
+</div>
+<div *ngIf="daitailleclient==1">
+
+  <div *ngIf="state.four">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> magasin : {{state.four.storeLabel}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getmagasinBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code magasin</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">magasin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    {{state.four.store}}
+                  </td>
+                  <td>
+                    {{state.four.storeLabel}}
+                  </td>
+        </tr>
+
+</tbody>
+</table>
+
+
+
+
+</div>
+
+
+
+<div>
+</div>
+<div style="width: 100%; display: flex; justify-content: end;">
+  <a class="button-77" role="button">
+    <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>Retourner</h6>
+    </div>
+  </a>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div *ngIf="daitailleclient==2">
+  <ng-container *ngSwitchCase="magasinStateEnume.LOADED">
+    <div class="row">
+      <div class="col">
+        <div class="card shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0"> magasin : {{state.four.storeLabel}}</h3>
+            <div style="width: 100%; display: flex;justify-content: center;">
+              <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                [(ngModel)]="searchText">
+              <div class="btn btn-light" style="margin-left: 5px;" (click)="getmagasinBycode()"> <img
+                  src="../assets/images/rechercher.png" alt=""></div>
+            </div>
+
+          </div>
+
+          <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+            <table class="table align-items-center table-flush">  
+              <thead class="thead-light">
+                <tr>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code magasin</th>
+                  <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">magasin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text"  [(ngModel)]="code" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+                  <td>
+                    <div class="user-details">
+                      <div class="input-box">
+
+                        <input type="text" [(ngModel)]="companyName" required>
+
+                      </div>
+                    </div>
+
+                  </td>
+
+
+                </tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div>
+</div>
+<div style="width: 100%; display: flex; justify-content: end;">
+  <a class="button-77" role="button">
+    <div (click)="modifiermagasin()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>modifier</h6>
+    </div>
+  </a>
+  <a class="button-77" role="button">
+    <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+      <img src="../assets/images/retournericon.png" alt="">
+      <h6>Retourner</h6>
+    </div>
+  </a>
+
+</div>
+</div>
+
+
+</div>
+
+</div>
+  </ng-container>
+
+
+<div style="width: 100%;height: 90vh; display: flex; justify-content: center; align-items: center;"
+        *ngSwitchCase="magasinStateEnume.LOADING">
+        <span class="loader"></span>
+      </div>
+     
+    </div>
+    <div *ngIf="daitailleclient==3">
+      <ng-container *ngSwitchCase="magasinStateEnume.LOADED">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+          </symbol>
+          <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+          </symbol>
+          <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </symbol>
+        </svg>
+        <div class="alert alert-success hide-alert" style="position: fixed; height: 80px; display: flex;  align-items: center; justify-content: center; top:0; right: 45%; " role="alert">
+          <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+          <div>
+            Votre modification a été effectué avec succès
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="card shadow">
+              <div class="card-header border-0">
+                <h3 class="mb-0"> magasin : {{state.four.storeLabel}}</h3>
+                <div style="width: 100%; display: flex;justify-content: center;">
+                  <input class="form-control border-3" style="width: 60%;" type="text" placeholder="search"
+                    [(ngModel)]="searchText">
+                  <div class="btn btn-light" style="margin-left: 5px;" (click)="getmagasinBycode()"> <img
+                      src="../assets/images/rechercher.png" alt=""></div>
+                </div>
+    
+              </div>
+    
+              <div class="table-responsive" style="height: 77.8vh; max-height: 69vh ;">
+                <table class="table align-items-center table-flush">
+                  <thead class="thead-light">
+                    <tr>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">code magasin</th>
+                      <th style="background-color: rgba(12, 12, 12, 0.237);" scope="col">magasin</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text"  [(ngModel)]="code" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                      <td>
+                        <div class="user-details">
+                          <div class="input-box">
+    
+                            <input type="text" [(ngModel)]="companyName" required>
+    
+                          </div>
+                        </div>
+    
+                      </td>
+                  </tr>
+    </tbody>
+    </table>
+    
+    
+    
+    
+    </div>
+    
+    
+    
+    <div>
+    </div>
+    <div style="width: 100%; display: flex; justify-content: end;">
+      <a class="button-77" role="button">
+        <div (click)="modifiermagasin()" style="display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/images/retournericon.png" alt="">
+          <h6>modifier</h6>
+        </div>
+      </a>
+      <a class="button-77" role="button">
+        <div (click)="retourner()" style="display: flex; justify-content: center; align-items: center;">
+          <img src="../assets/images/retournericon.png" alt="">
+          <h6>Retourner</h6>
+        </div>
+      </a>
+    
+    </div>
+    </div>
+    
+    
+    </div>
+    
+    </div>
+    
+    
+    
+    </ng-container>
+    
+
+    </div>
+
+
+
+
+
+
+
+
+<!-- Dark table -->

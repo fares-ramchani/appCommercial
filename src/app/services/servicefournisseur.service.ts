@@ -98,4 +98,7 @@ export class ServicefournisseurService {
   public updateFournisseur(fournisseur:any):Observable<any>{
     return this.http.put<any>("http://localhost:8000/management/logged-in-user/update-supplier/"+fournisseur.code,fournisseur);
   }
+  public getdonnerImprimer(donnerimprimer:any):Observable<any>{
+    return this.http.post<any>("http://localhost:8000/management/logged-in-user/printing-suppliers",donnerimprimer);
+  }
 }

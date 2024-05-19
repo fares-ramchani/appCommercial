@@ -503,6 +503,13 @@
           justify-content: center;
           
         }
+        @keyframes fadeOut {
+          0% { opacity: 1; }
+          100% { opacity: 0; display: none; }
+        }
+        .hide-alert {
+          animation: fadeOut 1s ease-out 2s forwards;
+        }
 
 /* @media screen and (max-width:1024px) {
   .parent{

@@ -21,7 +21,7 @@ import { loginReducer } from './ngrx/ngrxLogin/login.reducer';
 import { loginEffects } from './ngrx/ngrxLogin/login.effects';
 import { SuprimerFournisseurComponent } from './gestionFournisseurs/suprimer-fournisseur/suprimer-fournisseur.component';
 import { AppHttpInterceptor } from './interceptor/app-http.interceptor';
-import { fournisseurReducer, fournisseurSaveReducer } from './ngrx/ngrxfournisseur/fournisseur.reducer';
+import { fournisseurReducer, fournisseurSaveReducer, fournisseurimprimerReducer } from './ngrx/ngrxfournisseur/fournisseur.reducer';
 import { fournisseurEffect } from './ngrx/ngrxfournisseur/fournisseur.effects';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { RechercherFournisseurComponent } from './gestionFournisseurs/rechercher-fournisseur/rechercher-fournisseur.component';
@@ -35,7 +35,16 @@ import { ImprimerclientComponent } from './gestionclient/imprimerclient/imprimer
 import { RechercheMagasinComponent } from './gestionMagasins/recherche-magasin/recherche-magasin.component';
 import { ImprimermagasinComponent } from './gestionMagasins/imprimermagasin/imprimermagasin.component';
 import { SupprimermagasinComponent } from './gestionMagasins/supprimermagasin/supprimermagasin.component';
-import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component'
+import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component';
+import { ModepaiementComponent } from './gestionpaiement/modepaiement/modepaiement.component';
+import { RegistrationfamillesComponent } from './gestionFamilles/registrationfamilles/registrationfamilles.component';
+import { RecherchefamillesComponent } from './gestionFamilles/recherchefamilles/recherchefamilles.component';
+import { ImprimerfamillesComponent } from './gestionFamilles/imprimerfamilles/imprimerfamilles.component';
+import { SupprimerfamillesComponent } from './gestionFamilles/supprimerfamilles/supprimerfamilles.component'
+import { clientReducer, clientSaveReducer, clientimprimerReducer } from './ngrx/ngrxclient/client.reducer';
+import { clientEffect } from './ngrx/ngrxclient/client.effects';
+import { magasinReducer, magasinSaveReducer, magasinimprimerReducer } from './ngrx/ngrxmagasin/magasin.reducer';
+import { magasinEffect } from './ngrx/ngrxmagasin/magasin.effects';
 
 @NgModule({
   declarations: [
@@ -62,7 +71,12 @@ import { RegistrationmagasinComponent } from './gestionMagasins/registrationmaga
     RechercheMagasinComponent,
     ImprimermagasinComponent,
     SupprimermagasinComponent,
-    RegistrationmagasinComponent
+    RegistrationmagasinComponent,
+    ModepaiementComponent,
+    RegistrationfamillesComponent,
+    RecherchefamillesComponent,
+    ImprimerfamillesComponent,
+    SupprimerfamillesComponent
   ],
   imports: [
     BrowserModule,
@@ -72,8 +86,11 @@ import { RegistrationmagasinComponent } from './gestionMagasins/registrationmaga
     FormsModule,
     MatPaginatorModule,
     StoreModule.forRoot({loginReducer:loginReducer,fournisseurReducer:fournisseurReducer,
-      fournisseurSaveReducer:fournisseurSaveReducer}),
-    EffectsModule.forRoot([loginEffects,fournisseurEffect]),
+      fournisseurSaveReducer:fournisseurSaveReducer,clientSaveReducer:clientSaveReducer
+        ,clientReducer:clientReducer,fournisseurimprimerReducer:fournisseurimprimerReducer,
+        clientimprimerReducer:clientimprimerReducer,magasinReducer:magasinReducer,
+        magasinSaveReducer:magasinSaveReducer,magasinimprimerReducer:magasinimprimerReducer}),
+    EffectsModule.forRoot([loginEffects,fournisseurEffect,clientEffect,magasinEffect]),
     StoreDevtoolsModule.instrument(),
   ],
   providers: [   

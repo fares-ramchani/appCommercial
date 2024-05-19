@@ -1,0 +1,73 @@
+<app-nav-bar></app-nav-bar>
+<div  style="display: flex;width: 100%; background-color: #70b1fb; flex-direction: row-reverse; height: 93.2vh;">
+<div>
+    <app-side-bar-option ></app-side-bar-option>
+</div>
+<div class="container">
+    <div class="title">Mode De Paiement</div>
+    <div class="content">
+      <form [formGroup]="formModeDePaiement" novalidate>
+        <div style="display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+                <div class="user-details">
+                    <div class="input-box" >
+                      <span class="details">Mode De Paiement</span>
+                      <input type="text" placeholder="Enter code magasin" formControlName="ModeDePaiement" required>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Nbre Jours</span>
+                        <input type="number" placeholder="entrer nom magasin" formControlName="NbreJours" required >
+                      </div>
+                      <div class="input-box">
+                        <span class="details">Banque</span>
+                        <input type="text" placeholder="entrer nom magasin" formControlName="Banque" required >
+                      </div>
+                  </div>
+                  <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Compte Comptable</span>
+                        <input type="text" placeholder="entrer nom magasin" formControlName="CompteComptable" required >
+                      </div>
+                  </div>
+                  <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Intitulé du compte</span>
+                        <input type="text" placeholder="entrer nom magasin" formControlName="Intituléducompte" required >
+                      </div>
+                  </div>
+                 
+            </div>
+            <div style="margin-top: 40px;">
+                <div class="user-details user-details2">
+                    <div class="input-box">
+                      <span class="details">Utilisateur</span>
+                      <input type="text" [placeholder]="utilisateur"  [disabled]="true" >
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Date</span>
+                        <input type="text" [placeholder]="currentDate"  [disabled]="true"  >
+                      </div>
+                  </div>
+                  <div class="user-details user-details2" >
+                    <div class="input-box" >
+                      <span class="details">Post</span>
+                      <input type="text" [placeholder]="poste" [disabled]="true" >
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Heure</span>
+                        <input type="text" [placeholder]="currentTime"  [disabled]="true"  >
+                      </div>
+                  </div>
+                 
+            </div>
+
+        </div>
+       
+       
+      </form>
+    </div>
+  </div>
+</div>
+<!-- <app-supprimermagasin *ngIf="showcomposantsupprimer"></app-supprimermagasin>
+<app-recherche-magasin *ngIf="showcomposantrechercher"></app-recherche-magasin>
+<app-imprimermagasin *ngIf="showcomposantImprimer"></app-imprimermagasin> -->

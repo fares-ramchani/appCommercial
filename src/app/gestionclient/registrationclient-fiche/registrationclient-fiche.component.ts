@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable, map } from 'rxjs';
 import { client } from 'src/app/model/client.model';
 import { clientComplete } from 'src/app/model/clientComplete.model';
+import { clientState, clientStateEnume } from 'src/app/ngrx/ngrxclient/client.reducer';
 import { ServiceclientService } from 'src/app/services/serviceclient.service';
 import { ShowComposantimprimerclientService } from 'src/app/services/show-composantimprimerclient.service';
 import { ShowComposantrechercherclientService } from 'src/app/services/show-composantrechercherclient.service';
@@ -18,7 +21,9 @@ export class RegistrationclientFicheComponent {
   showcomposantrechercher: boolean=false
   formclient!:FormGroup;
   clientData: clientComplete| null = null;
-  constructor( private fb : FormBuilder,
+  clientState$:Observable<clientState> | null=null;
+  readonly clientStateEnume=clientStateEnume;
+  constructor( private fb : FormBuilder,private store:Store<any>,
     private ShowComposantimprimerclientService:ShowComposantimprimerclientService,
     private ServiceclientService:ServiceclientService,
     private ShowComposantsupprimerclientService:ShowComposantsupprimerclientService,
@@ -37,6 +42,9 @@ export class RegistrationclientFicheComponent {
       this.showcomposantrechercher = inputData
   
     });
+    this.clientState$=this.store.pipe(
+      map((state)=>state.clientSaveReducer)
+    )
     this.formclient=this.fb.group({
       address:this.fb.control(''),
       city:this.fb.control(''),
@@ -71,13 +79,34 @@ export class RegistrationclientFicheComponent {
     });
     this.ServiceclientService.clientCompleteData$.subscribe(data => {
       this.clientData = data;
-      console.log(data);
     });
     this.formclient.valueChanges.subscribe((formData: client) => {
       this.ServiceclientService.updateclientData(formData); 
       this.ServiceclientService.updateclientCompleteData1(formData,this.clientData); 
       
     });
+
+}
+
+getDonnerFournisseur():client{
+  let donfourn : client;
+  donfourn=this.formclient.value
+  return  donfourn;
+}
+getErrorsMessage(arg0: string,error: any):string {
+  if(error['required']){
+    return arg0+ " obligatoir";
+  }else if(error['email']){
+    return "email invalid"
+  }
+  else if(error['min']){
+    return  "telephone invalid"
+  }
+  else if(error['max']){
+    return  "telephone invalid"
+  }
+  else return "";
+  
 
 }
 

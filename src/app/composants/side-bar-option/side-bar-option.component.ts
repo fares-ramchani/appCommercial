@@ -26,6 +26,10 @@ import { magasin } from 'src/app/model/magasin.model';
 import { ServiceMagasinService } from 'src/app/services/service-magasin.service';
 import { magasinState, magasinStateEnume } from 'src/app/ngrx/ngrxmagasin/magasin.reducer';
 import { SavemagasinActions } from 'src/app/ngrx/ngrxmagasin/magasin.action';
+import { famille } from 'src/app/model/famille.model';
+import { ServicefamilleService } from 'src/app/services/servicefamille.service';
+import { familleState, familleStateEnume } from 'src/app/ngrx/ngrxfamille/famille.reducer';
+import { SavefamilleActions } from 'src/app/ngrx/ngrxfamille/famille.action';
 
 @Component({
   selector: 'app-side-bar-option',
@@ -36,6 +40,7 @@ export class SideBarOptionComponent {
  urlactuell:any
   fournisseurData: fournisseurComplete | null = null;
   clientData: clientComplete | null = null;
+  familleData: famille | null = null;
   magasinData: magasin | null = null;
   FounisseurState$:Observable<fournisseurState> | null=null;
   readonly fournisseurStateEnume=fournisseurStateEnume;
@@ -43,6 +48,8 @@ export class SideBarOptionComponent {
   readonly clientStateEnume=clientStateEnume;
   magasinState$:Observable<magasinState> | null=null;
   readonly magasinStateEnume=magasinStateEnume;
+  familleState$:Observable<familleState> | null=null;
+  readonly familleStateEnume=familleStateEnume;
   constructor(private store:Store<any>, private ServicefournisseurService: ServicefournisseurService, 
     private ShowComposantsurprimmerFornisseurService: ShowComposantsurprimmerFornisseurService,
      private ShowComposantImprimerFornisseurService: ShowComposantImprimerFornisseurService,
@@ -58,6 +65,7 @@ export class SideBarOptionComponent {
     private ShowComposantimprimerfamilleService: ShowComposantimprimerfamilleService,
     private ShowComposantrecherchefamilleService: ShowComposantrecherchefamilleService,
     private ShowComposantsupprimerfamilleService: ShowComposantsupprimerfamilleService,
+    private ServicefamilleService:ServicefamilleService,
     
     private router: Router) { }
 
@@ -128,6 +136,14 @@ export class SideBarOptionComponent {
     
 
     }
+    else if (this.urlactuell.startsWith("/Registrationfamilles")) {
+      // const data = this.magasinData
+      // const formattedData = { ...data?.client, ...data }
+      // const { client, ...other } = formattedData
+      this.store.dispatch(new SavefamilleActions(this.familleData));
+    
+
+    }
   
   }
   ngOnInit(): void {
@@ -154,6 +170,14 @@ export class SideBarOptionComponent {
       )
       this.ServiceMagasinService.magasinData$.subscribe(data => {
         this.magasinData = data;
+      });
+    }
+    else if (this.urlactuell.startsWith("/Registrationfamilles")) {
+      this.familleState$=this.store.pipe(
+        map((state)=>state.familleSaveReducer )
+      )
+      this.ServicefamilleService.familleData$.subscribe(data => {
+        this.familleData = data;
       });
     }
    

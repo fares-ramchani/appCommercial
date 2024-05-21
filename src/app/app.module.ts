@@ -45,6 +45,8 @@ import { clientReducer, clientSaveReducer, clientimprimerReducer } from './ngrx/
 import { clientEffect } from './ngrx/ngrxclient/client.effects';
 import { magasinReducer, magasinSaveReducer, magasinimprimerReducer } from './ngrx/ngrxmagasin/magasin.reducer';
 import { magasinEffect } from './ngrx/ngrxmagasin/magasin.effects';
+import { familleReducer, familleSaveReducer, familleimprimerReducer } from './ngrx/ngrxfamille/famille.reducer';
+import { familleEffect } from './ngrx/ngrxfamille/famille.effects';
 
 @NgModule({
   declarations: [
@@ -89,8 +91,9 @@ import { magasinEffect } from './ngrx/ngrxmagasin/magasin.effects';
       fournisseurSaveReducer:fournisseurSaveReducer,clientSaveReducer:clientSaveReducer
         ,clientReducer:clientReducer,fournisseurimprimerReducer:fournisseurimprimerReducer,
         clientimprimerReducer:clientimprimerReducer,magasinReducer:magasinReducer,
-        magasinSaveReducer:magasinSaveReducer,magasinimprimerReducer:magasinimprimerReducer}),
-    EffectsModule.forRoot([loginEffects,fournisseurEffect,clientEffect,magasinEffect]),
+        magasinSaveReducer:magasinSaveReducer,magasinimprimerReducer:magasinimprimerReducer,
+        familleReducer:familleReducer,familleSaveReducer:familleSaveReducer,familleimprimerReducer:familleimprimerReducer}),
+    EffectsModule.forRoot([loginEffects,fournisseurEffect,clientEffect,magasinEffect,familleEffect]),
     StoreDevtoolsModule.instrument(),
   ],
   providers: [   

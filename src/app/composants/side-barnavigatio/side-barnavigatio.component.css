@@ -30,6 +30,10 @@
     border-radius: 5px;
     background-color: #f3f4f6;
     overflow-y: auto;
+    background-image: url(../menu-principale/images/backgrounMenuPrincipale.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 .error{
   background-color: red;color: white; position: fixed; margin-top: 3%; border-radius: 10px; width: 400px; text-align: center;
@@ -448,9 +452,12 @@
         flex-direction: column;
         justify-content: center;
       }
+      .contunueItem{
+        height: 80%;
+      }
       .img10 {
         width: 35px;
-        height: 30px;
+        height: 35px;
       
       
       }

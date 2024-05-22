@@ -47,6 +47,7 @@ import { magasinReducer, magasinSaveReducer, magasinimprimerReducer } from './ng
 import { magasinEffect } from './ngrx/ngrxmagasin/magasin.effects';
 import { familleReducer, familleSaveReducer, familleimprimerReducer } from './ngrx/ngrxfamille/famille.reducer';
 import { familleEffect } from './ngrx/ngrxfamille/famille.effects';
+import { MenuPrincipaleComponent } from './composants/menu-principale/menu-principale.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { familleEffect } from './ngrx/ngrxfamille/famille.effects';
     RegistrationfamillesComponent,
     RecherchefamillesComponent,
     ImprimerfamillesComponent,
-    SupprimerfamillesComponent
+    SupprimerfamillesComponent,
+    MenuPrincipaleComponent
   ],
   imports: [
     BrowserModule,

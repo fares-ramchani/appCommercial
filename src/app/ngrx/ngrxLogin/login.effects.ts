@@ -20,7 +20,7 @@ export class loginEffects {
                         localStorage.setItem("token", usere.data.token);
                         localStorage.setItem("username", usere.data.user.username);
                         localStorage.setItem("role", usere.data.user.role);
-                        return this.router.navigate(['/RegistrationFournisseur/RegistrationFournisseurFiche']).then(() => {
+                        return this.router.navigate(['/menuprincipale']).then(() => {
                             return new login_userActionsSuccess(usere);
                         });
                     }),

@@ -14,6 +14,7 @@ import { RegistrationclientMemoComponent } from './gestionclient/registrationcli
 import { RegistrationmagasinComponent } from './gestionMagasins/registrationmagasin/registrationmagasin.component';
 import { ModepaiementComponent } from './gestionpaiement/modepaiement/modepaiement.component';
 import { RegistrationfamillesComponent } from './gestionFamilles/registrationfamilles/registrationfamilles.component';
+import { MenuPrincipaleComponent } from './composants/menu-principale/menu-principale.component';
 
 const routes: Routes = [
   {path :"RegistrationFournisseur" , component: RegistrationFournisseurComponent
@@ -31,7 +32,8 @@ const routes: Routes = [
   {path :"Registrationmagasin" ,component:RegistrationmagasinComponent},
   {path :"Modepaiement" ,component:ModepaiementComponent},
   {path :"Registrationfamilles" ,component:RegistrationfamillesComponent},
-  {path :"" , component: LoginComponent}
+  {path :"" , component: LoginComponent},
+  {path :"menuprincipale" , component: MenuPrincipaleComponent}
 ];
 
 @NgModule({

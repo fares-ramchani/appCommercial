@@ -1,0 +1,11 @@
+.menu{
+    background-image: url(../menu-principale/images/backgrounMenuPrincipale.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+   
+}
+.card:hover{
+    background-color: rgba(0, 0, 0, 0.079);
+    cursor:pointer;
+}

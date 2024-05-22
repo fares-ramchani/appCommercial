@@ -64,7 +64,7 @@ export class familleEffect {
             mergeMap((action: getfamillebycodesActions) =>
                 this.ServicefamilleService.getfamilleByCode(action.payload).pipe(
                     map((famille: any) => {
-                        return new getfamillebycodesActionsSuccess(famille.data.store);
+                        return new getfamillebycodesActionsSuccess(famille.data.family);
                     }),
                     catchError((err) => of(new getfamillebycodesActionsError(err.error.msg)))
                 )

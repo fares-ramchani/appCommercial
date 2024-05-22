@@ -408,7 +408,7 @@
       
       .button-77:after {
     
-        background-color: rgba(118, 165, 241, 0.378);
+        background-color: rgba(118, 165, 241, 0.04);
         content: "";
         bottom: 4px;
         content: "";
@@ -429,7 +429,7 @@
         left: 0;
         right: 0;
         top: 0;
-        background-color: rgba(14, 92, 247, 0.474);
+        background-color: rgba(63, 124, 246, 0.158);
         transition-timing-function: ease-in;
       }
       

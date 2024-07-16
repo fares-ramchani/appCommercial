@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { Observable, map } from 'rxjs';
 import { paramatrePaginationClient } from 'src/app/model/paramatrePaginationClient.model';
 import { GetAllmagasintActions, getmagasinbycodesActions, modifiermagasinActions } from 'src/app/ngrx/ngrxmagasin/magasin.action';
 import { magasinState, magasinStateEnume, magasinStateModifier } from 'src/app/ngrx/ngrxmagasin/magasin.reducer';
 import { ParamatrePaginationClientService } from 'src/app/services/paramatre-pagination-client.service';
+import { ShowComposantAlertmodifierService } from 'src/app/services/show-composant-alertmodifier.service';
 import { ShowComposantrecherchermagasinService } from 'src/app/services/show-composantrecherchermagasin.service';
 
 @Component({
@@ -25,10 +27,12 @@ export class RechercheMagasinComponent {
   daitailleclient=0
   currentpage=1
   magasinComplete: Array<any> = []
+  showcomposantAlertmodifier: boolean = false
   paginationParamter: paramatrePaginationClient = { perPage: this.nombremagasinDansUnPage, page:1 }
   constructor(private ParamatrePaginationService:ParamatrePaginationClientService, private store: Store<any>,
      private ShowComposantrecherchermagasinService: ShowComposantrecherchermagasinService,
-     private fb: FormBuilder) {
+     private ShowComposantAlertmodifierService:ShowComposantAlertmodifierService,
+     private fb: FormBuilder,    private toastr:ToastrService) {
       
       }
   ngOnDestroy() {
@@ -38,6 +42,9 @@ export class RechercheMagasinComponent {
     this.magasinState$ = this.store.pipe(
       map((state) => state.magasinReducer)
     )
+    this.ShowComposantAlertmodifierService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertmodifier = data;
+    });
    
     
     this.getmagasinParpagination(this.paginationParamter)
@@ -58,6 +65,7 @@ export class RechercheMagasinComponent {
   getmagasinBycode(){
     this. daitailleclient=0
     this.store.dispatch(new getmagasinbycodesActions(parseInt(this.searchText)));
+   
 
 
   }
@@ -92,14 +100,13 @@ export class RechercheMagasinComponent {
 
   }
   modifiermagasin(){
-    this. daitailleclient=3
     let magasinmodifier:any={
       store:  this.code,
       storeLabel :  this.companyName,
     }
-    
-    this.store.dispatch(new modifiermagasinActions(magasinmodifier));
-    this.store.dispatch(new getmagasinbycodesActions(magasinmodifier.store));
+    this.ShowComposantAlertmodifierService.setshowpopup()
+    this.ShowComposantAlertmodifierService.setSharedData(magasinmodifier)
+; 
     this.magasinState$?.subscribe((state) => {
       if(state.four){
         this.code=state.four.store
@@ -119,6 +126,7 @@ export class RechercheMagasinComponent {
       }
       
   });
+  this. daitailleclient=3
   }
  
   onchangepage(pageDta: PageEvent) {

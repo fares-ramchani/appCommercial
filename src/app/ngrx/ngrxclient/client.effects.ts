@@ -4,12 +4,14 @@ import { Observable, catchError, map, mergeMap, of } from "rxjs";
 import { ParamatrePaginationClientService } from "src/app/services/paramatre-pagination-client.service";
 import { ServiceclientService } from "src/app/services/serviceclient.service";
 import { DeleteclientActionsError, DeleteclientsActions, GetAllclientActions, GetAllclientActionsError, GetAllclientActionsSuccess, SaveclientActions, SaveclientActionsError, SaveclientActionsSuccess, clientActions, clientActionsTypes, getclientbycodesActions, getclientbycodesActionsError, getclientbycodesActionsSuccess, imprimerclientActions, imprimerclientActionsError, imprimerclientActionsSuccess, modifierclientActions, modifierclientActionsError, modifierclientActionsSuccess } from "./client.actions";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class clientEffect {
     constructor(
         private ParamatrePaginationClientService:ParamatrePaginationClientService,
         private ServiceclientService: ServiceclientService,
+        private toastr:ToastrService,
         private effectActions: Actions
     ) { }
 
@@ -34,6 +36,7 @@ export class clientEffect {
                 return this.ServiceclientService.deletefournisseurByCode(action.payload).pipe(
                     mergeMap(() => {
                         const aa = { perPage: 10, page: this.ParamatrePaginationClientService.currentpage1() };
+                        this.toastr.success(" Votre supprition a été effectué avec succès")
                         return of(new GetAllclientActions(aa));
                     }),
                     catchError((err) => {
@@ -75,9 +78,13 @@ export class clientEffect {
         this.effectActions.pipe(
             ofType(clientActionsTypes.modifier_client),
             mergeMap((action: modifierclientActions) => {
+  
                 return this.ServiceclientService.updateFournisseur(action.payload).pipe(
 
-                    map((client) => new modifierclientActionsSuccess(client)),
+                    map((client) => {
+                        this.toastr.success("Votre modification a été effectué avec succès")
+                        return new modifierclientActionsSuccess(client)
+                    }),
                     catchError((err) => of(new modifierclientActionsError(err.message)))
 
                 )

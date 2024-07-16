@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { paramatrePaginationClient } from 'src/app/model/paramatrePaginationClient.model';
 import { DeletemagasinsActions, GetAllmagasintActions, getmagasinbycodesActions } from 'src/app/ngrx/ngrxmagasin/magasin.action';
 import { magasinState, magasinStateEnume } from 'src/app/ngrx/ngrxmagasin/magasin.reducer';
+import { ShowComposantAlertsupprimerService } from 'src/app/services/show-composant-alertsupprimer.service';
 import { ShowComposantsupprimermagasinService } from 'src/app/services/show-composantsupprimermagasin.service';
 
 @Component({
@@ -18,9 +19,12 @@ export class SupprimermagasinComponent {
   magasin: Array<any> = [];
   totalmagasin =24
   nombremagasinDansUnPage = 10
+  showcomposantAlertSuprimer: boolean = false
   currentpage=1
   paginationParamter: paramatrePaginationClient = { perPage: this.nombremagasinDansUnPage, page:1 }
-  constructor(  private store: Store<any>,private ShowComposantsupprimermagasinService: ShowComposantsupprimermagasinService){}
+  constructor(  private store: Store<any>,
+    private ShowComposantsupprimermagasinService: ShowComposantsupprimermagasinService,
+    private ShowComposantAlertsupprimerService:ShowComposantAlertsupprimerService){}
   closepopup() {
     this.ShowComposantsupprimermagasinService.setshowpopup();
 
@@ -29,6 +33,9 @@ export class SupprimermagasinComponent {
     this.magasinState$ = this.store.pipe(
       map((state) => state.magasinReducer)
     )
+    this.ShowComposantAlertsupprimerService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertSuprimer = data;
+    });
     this.getmagasinParpagination(this.paginationParamter)
     
     
@@ -49,11 +56,11 @@ export class SupprimermagasinComponent {
 
 
   deletemagasinByCode(codemagasin: number) {
-    if (confirm("Êtes-vous sûr de supprimer cette borne ?")) {
-      this.currentpage=1
-      this.store.dispatch(new DeletemagasinsActions(codemagasin))
+    this.ShowComposantAlertsupprimerService.setshowpopup()
+    this.ShowComposantAlertsupprimerService.setSharedData(codemagasin)
+    this.currentpage=1
+   
     
-    }
 
   }
   retourner(){

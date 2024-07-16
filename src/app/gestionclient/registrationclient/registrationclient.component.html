@@ -7,10 +7,14 @@
             <div style="width: 15%;">
                 <label for="exampleFormControlInput1" class="form-label">code</label><br>
                 <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="code">
+                <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;" *ngIf="formclientComplete.controls['code'].errors && formclientComplete.controls['code'].touched" >
+                    {{getErrorsMessage('code',formclientComplete.controls['code'].errors)}}</small>
             </div>
             <div style="width: 40%;">
                 <label for="exampleFormControlInput1" class="form-label">Raison Sociale/Nom</label><br>
                 <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="companyName">
+                <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;"  *ngIf="formclientComplete.controls['companyName'].errors && formclientComplete.controls['companyName'].touched">
+                    {{getErrorsMessage('companyName',formclientComplete.controls['companyName'].errors)}}</small>
             </div>
             <div style="width: 15%;">
                 <label for="exampleFormControlInput1" class="form-label">Abréviation</label><br>

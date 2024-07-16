@@ -7,6 +7,7 @@ import { paramatrePaginationClient } from 'src/app/model/paramatrePaginationClie
 import { GetAllfamilletActions, getfamillebycodesActions, modifierfamilleActions } from 'src/app/ngrx/ngrxfamille/famille.action';
 import { familleState, familleStateEnume, familleStateModifier } from 'src/app/ngrx/ngrxfamille/famille.reducer';
 import { ParamatrePaginationClientService } from 'src/app/services/paramatre-pagination-client.service';
+import { ShowComposantAlertmodifierService } from 'src/app/services/show-composant-alertmodifier.service';
 import { ShowComposantrecherchefamilleService } from 'src/app/services/show-composantrecherchefamille.service';
 
 @Component({
@@ -25,9 +26,11 @@ export class RecherchefamillesComponent {
   daitailleclient=0
   currentpage=1
   familleComplete: Array<any> = []
+  showcomposantAlertmodifier: boolean = false
   paginationParamter: paramatrePaginationClient = { perPage: this.nombrefamilleDansUnPage, page:1 }
   constructor(private ParamatrePaginationService:ParamatrePaginationClientService, private store: Store<any>,
      private ShowComposantrecherchefamilleService: ShowComposantrecherchefamilleService,
+     private ShowComposantAlertmodifierService:ShowComposantAlertmodifierService,
      private fb: FormBuilder) {
       
       }
@@ -38,7 +41,9 @@ export class RecherchefamillesComponent {
     this.familleState$ = this.store.pipe(
       map((state) => state.familleReducer)
     )
-   
+    this.ShowComposantAlertmodifierService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertmodifier = data;
+    });
     
     this.getfamilleParpagination(this.paginationParamter)
   
@@ -97,9 +102,8 @@ export class RecherchefamillesComponent {
       code:  this.code,
       familyLabel :  this.companyName,
     }
-    
-    this.store.dispatch(new modifierfamilleActions(famillemodifier));
-    this.store.dispatch(new getfamillebycodesActions(famillemodifier.code));
+    this.ShowComposantAlertmodifierService.setshowpopup()
+    this.ShowComposantAlertmodifierService.setSharedData(famillemodifier)
     this.familleState$?.subscribe((state) => {
       if(state.four){
         this.code=state.four.code

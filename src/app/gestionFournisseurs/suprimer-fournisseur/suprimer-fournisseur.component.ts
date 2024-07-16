@@ -9,6 +9,7 @@ import { DeletefournisseursActions, GetAllfournisseurActions, getfournisseurbyco
 import { PageEvent } from '@angular/material/paginator';
 import { ParamatrePaginationService } from 'src/app/services/paramatre-pagination.service';
 import { state } from '@angular/animations';
+import { ShowComposantAlertsupprimerService } from 'src/app/services/show-composant-alertsupprimer.service';
 @Component({
   selector: 'app-suprimer-fournisseur',
   templateUrl: './suprimer-fournisseur.component.html',
@@ -18,21 +19,26 @@ export class SuprimerFournisseurComponent {
   fournisseurState$: Observable<fournisseurState> | null = null;
   readonly fournisseurStateEnume = fournisseurStateEnume;
   fournisseur: Array<any> = [];
-  totalFournisseur =24
+  totalFournisseur = 24
   nombrefournisseurDansUnPage = 10
-  currentpage=1
-  paginationParamter: paginationParamter = { perPage: this.nombrefournisseurDansUnPage, page:1 }
-  constructor(private ParamatrePaginationService:ParamatrePaginationService,
-     private store: Store<any>,
-      private ServicefournisseurService: ServicefournisseurService, 
-      private ShowComposantsurprimmerFornisseurService: ShowComposantsurprimmerFornisseurService) { }
+  currentpage = 1
+  showcomposantAlertSuprimer: boolean = false
+  paginationParamter: paginationParamter = { perPage: this.nombrefournisseurDansUnPage, page: 1 }
+  constructor(private ParamatrePaginationService: ParamatrePaginationService,
+    private store: Store<any>,
+    private ServicefournisseurService: ServicefournisseurService,
+    private ShowComposantsurprimmerFornisseurService: ShowComposantsurprimmerFornisseurService,
+    private ShowComposantAlertsupprimerService: ShowComposantAlertsupprimerService) { }
   ngOnInit() {
     this.fournisseurState$ = this.store.pipe(
       map((state) => state.fournisseurReducer)
     )
     this.getfournisseurParpagination(this.paginationParamter)
-    
-    
+    this.ShowComposantAlertsupprimerService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertSuprimer = data;
+    });
+
+
   }
 
   closepopup() {
@@ -43,28 +49,25 @@ export class SuprimerFournisseurComponent {
     this.store.dispatch(new GetAllfournisseurActions(paginationParamter));
   }
   onchangepage(pageDta: PageEvent) {
-    this.currentpage=pageDta.pageIndex+1
-    this.nombrefournisseurDansUnPage=pageDta.pageSize
-    this.paginationParamter = { perPage:this.nombrefournisseurDansUnPage,page:this.currentpage}
+    this.currentpage = pageDta.pageIndex + 1
+    this.nombrefournisseurDansUnPage = pageDta.pageSize
+    this.paginationParamter = { perPage: this.nombrefournisseurDansUnPage, page: this.currentpage }
     this.getfournisseurParpagination(this.paginationParamter)
     console.log(pageDta)
 
   }
-  getFournisseurBycode(){
+  getFournisseurBycode() {
     this.store.dispatch(new getfournisseurbycodesActions(parseInt(this.searchText)));
 
   }
 
 
   deleteFournisseurByCode(codeFournisseur: number) {
-    if (confirm("Êtes-vous sûr de supprimer cette borne ?")) {
-      this.currentpage=1
-      this.store.dispatch(new DeletefournisseursActions(codeFournisseur))
-    
-    }
-
+    this.ShowComposantAlertsupprimerService.setshowpopup()
+    this.ShowComposantAlertsupprimerService.setSharedData(codeFournisseur)
+    this.currentpage = 1
   }
-  retourner(){
+  retourner() {
     this.getfournisseurParpagination(this.paginationParamter)
 
   }

@@ -13,12 +13,16 @@
                             <div class="input-box" style="width: 100%;">
                                 <span class="details">Code Famille</span>
                                 <input type="text" placeholder="Enter Adresse" formControlName="code" required>
+                                <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;" *ngIf="formfamille.controls['code'].errors && formfamille.controls['code'].touched" >
+                                    {{getErrorsMessage('code',formfamille.controls['code'].errors)}}</small>
                             </div>
                         </div>
                         <div class="user-details">
                             <div class="input-box" style="width: 100%;">
                                 <span class="details">Libellé Famille</span>
                                 <input type="text" placeholder="Enter Adresse" formControlName="familyLabel" required>
+                                <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;" *ngIf="formfamille.controls['familyLabel'].errors && formfamille.controls['familyLabel'].touched" >
+                                    {{getErrorsMessage('familyLabel',formfamille.controls['familyLabel'].errors)}}</small>
                             </div>
                         </div>
                         <div class="user-details">

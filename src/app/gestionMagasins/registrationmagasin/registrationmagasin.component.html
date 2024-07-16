@@ -15,12 +15,16 @@
                       <div class="input-box" >
                         <span class="details">Magasin</span>
                         <input type="number" placeholder="Enter code magasin" formControlName="store" required>
+                        <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;" *ngIf="formmagasin.controls['store'].errors && formmagasin.controls['store'].touched" >
+                          {{getErrorsMessage('store',formmagasin.controls['store'].errors)}}</small>
                       </div>
                     </div>
                     <div class="user-details">
                       <div class="input-box">
                         <span class="details">Libellé</span>
                         <input type="text" placeholder="entrer nom magasin" formControlName="storeLabel" required >
+                        <small style="background-color: red; color: aliceblue; display: flex; justify-content: center;" *ngIf="formmagasin.controls['storeLabel'].errors && formmagasin.controls['storeLabel'].touched" >
+                          {{getErrorsMessage('storeLabel',formmagasin.controls['storeLabel'].errors)}}</small>
                       </div>
                     </div>
               </div>

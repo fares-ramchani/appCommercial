@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { paramatrePaginationClient } from 'src/app/model/paramatrePaginationClient.model';
 import { DeleteclientsActions, GetAllclientActions, getclientbycodesActions } from 'src/app/ngrx/ngrxclient/client.actions';
 import { clientState, clientStateEnume } from 'src/app/ngrx/ngrxclient/client.reducer';
+import { ShowComposantAlertsupprimerService } from 'src/app/services/show-composant-alertsupprimer.service';
 import { ShowComposantsupprimerclientService } from 'src/app/services/show-composantsupprimerclient.service';
 
 @Component({
@@ -19,8 +20,11 @@ export class SupprimerclientComponent {
   totalclient =24
   nombreclientDansUnPage = 10
   currentpage=1
+  showcomposantAlertSuprimer:boolean=false
   paginationParamter: paramatrePaginationClient = { perPage: this.nombreclientDansUnPage, page:1 }
-  constructor(  private store: Store<any>,private ShowComposantsupprimerclientService: ShowComposantsupprimerclientService){}
+  constructor(  private store: Store<any>,
+    private ShowComposantsupprimerclientService: ShowComposantsupprimerclientService,
+    private ShowComposantAlertsupprimerService:ShowComposantAlertsupprimerService){}
   closepopup() {
     this.ShowComposantsupprimerclientService.setshowpopup();
 
@@ -29,6 +33,9 @@ export class SupprimerclientComponent {
     this.clientState$ = this.store.pipe(
       map((state) => state.clientReducer)
     )
+    this.ShowComposantAlertsupprimerService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertSuprimer = data;
+    });
     this.getclientParpagination(this.paginationParamter)
     
     
@@ -51,12 +58,10 @@ export class SupprimerclientComponent {
 
 
   deleteclientByCode(codeFournisseur: number) {
-    if (confirm("Êtes-vous sûr de supprimer cette borne ?")) {
-      this.currentpage=1
-      this.store.dispatch(new DeleteclientsActions(codeFournisseur))
+    this.ShowComposantAlertsupprimerService.setshowpopup()
+    this.ShowComposantAlertsupprimerService.setSharedData(codeFournisseur)
+    this.currentpage=1
     
-    }
-
   }
   retourner(){
     this.getclientParpagination(this.paginationParamter)

@@ -48,6 +48,11 @@ import { magasinEffect } from './ngrx/ngrxmagasin/magasin.effects';
 import { familleReducer, familleSaveReducer, familleimprimerReducer } from './ngrx/ngrxfamille/famille.reducer';
 import { familleEffect } from './ngrx/ngrxfamille/famille.effects';
 import { MenuPrincipaleComponent } from './composants/menu-principale/menu-principale.component';
+import { AlertsSuprimerComponent } from './composants/alerts/alerts-suprimer/alerts-suprimer.component';
+import { AlertsModifierComponent } from './composants/alerts/alerts-modifier/alerts-modifier.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { timeout } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -80,7 +85,9 @@ import { MenuPrincipaleComponent } from './composants/menu-principale/menu-princ
     RecherchefamillesComponent,
     ImprimerfamillesComponent,
     SupprimerfamillesComponent,
-    MenuPrincipaleComponent
+    MenuPrincipaleComponent,
+    AlertsSuprimerComponent,
+    AlertsModifierComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +104,11 @@ import { MenuPrincipaleComponent } from './composants/menu-principale/menu-princ
         familleReducer:familleReducer,familleSaveReducer:familleSaveReducer,familleimprimerReducer:familleimprimerReducer}),
     EffectsModule.forRoot([loginEffects,fournisseurEffect,clientEffect,magasinEffect,familleEffect]),
     StoreDevtoolsModule.instrument(),
+    ToastrModule.forRoot({timeOut:4000,
+      progressBar:true,progressAnimation:'increasing'}
+    
+    ),
+    BrowserAnimationsModule
   ],
   providers: [   
   {provide : HTTP_INTERCEPTORS , useClass : AppHttpInterceptor , multi : true}],

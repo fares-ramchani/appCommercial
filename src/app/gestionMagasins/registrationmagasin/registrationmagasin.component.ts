@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Observable, map } from 'rxjs';
@@ -9,6 +9,7 @@ import { ServiceMagasinService } from 'src/app/services/service-magasin.service'
 import { ShowComposantimprimermagasinService } from 'src/app/services/show-composantimprimermagasin.service';
 import { ShowComposantrecherchermagasinService } from 'src/app/services/show-composantrecherchermagasin.service';
 import { ShowComposantsupprimermagasinService } from 'src/app/services/show-composantsupprimermagasin.service';
+import { ValidationFormulairService } from 'src/app/services/validation-formulair.service';
 
 @Component({
   selector: 'app-registrationmagasin',
@@ -30,6 +31,7 @@ export class RegistrationmagasinComponent {
     private ShowComposantrecherchermagasinService: ShowComposantrecherchermagasinService,
     private ShowComposantimprimermagasinService:ShowComposantimprimermagasinService,
     private ServiceMagasinService:ServiceMagasinService,
+    private ValidationFormulairService:ValidationFormulairService,
     private store:Store<any>,
   ){
     this.currentDate = moment().format('YYYY-MM-DD');
@@ -55,12 +57,29 @@ export class RegistrationmagasinComponent {
       map((state)=>state.magasinSaveReducer )
     )
     this.formmagasin = this.fb.group({
-      store: this.fb.control(Number),
-      storeLabel: this.fb.control(''),
+      store: this.fb.control(null,Validators.required),
+      storeLabel: this.fb.control('',Validators.required),
     });
     this.formmagasin.valueChanges.subscribe((formData: magasin) => {
       this.ServiceMagasinService.updatemagasinData(formData); 
+      this.ValidationFormulairService.setvalidationFormuliare(this.formmagasin.valid)
     });
 
+  }
+  getErrorsMessage(arg0: string,error: any):string {
+    if(error['required']){
+      return arg0+ " obligatoir";
+    }else if(error['email']){
+      return "email invalid"
+    }
+    else if(error['min']){
+      return  "telephone invalid"
+    }
+    else if(error['max']){
+      return  "telephone invalid"
+    }
+    else return "";
+    
+  
   }
 }

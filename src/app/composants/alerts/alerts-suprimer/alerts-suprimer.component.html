@@ -1,0 +1,12 @@
+<div id="container">
+    <div mat-dialog-actions
+      style="width: 30%;display: flex;justify-content: end;height: 26px; background: linear-gradient(135deg, #f14a4a, #f51a1a); ; position: fixed;">
+      <button style="margin-top: 2px; ;" mat-raised-buttom class="btn btn-close"></button>
+    </div>
+    <h4 style="margin-top: 30px;text-align: center;">Êtes-vous sûr </h4><br>
+    <h4 style="text-align: center;" >Confirmer la suppression de {{motcle}} </h4>
+    <div style="display: flex; width: 100%; justify-content: center;margin-top: 35px;">
+        <button (click)="suprimerfournisseur()" style="width: 70px;margin-right: 47px;" type="button" class="btn btn-danger">oui</button>
+        <button (click)="annulerSuprimerFounisseur()" style="width: 70px;" type="button" class="btn btn-secondary">non</button>
+    </div>
+</div>

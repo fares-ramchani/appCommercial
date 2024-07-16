@@ -22,12 +22,14 @@ import {
     modifierfournisseurActionsSuccess
 } from "./fournisseur.actions";
 import { ParamatrePaginationService } from "src/app/services/paramatre-pagination.service";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class fournisseurEffect {
     constructor(
         private ParamatrePaginationService:ParamatrePaginationService,
         private serviceFournisseurService: ServicefournisseurService,
+        private toastr:ToastrService,
         private effectActions: Actions
     ) { }
 
@@ -49,9 +51,11 @@ export class fournisseurEffect {
         this.effectActions.pipe(
             ofType(fournisseurActionsTypes.delete_fournisseur),
             mergeMap((action: DeletefournisseursActions) => {
+           
                 return this.serviceFournisseurService.deletefournisseurByCode(action.payload).pipe(
                     mergeMap(() => {
                         const aa = { perPage: 10, page: this.ParamatrePaginationService.currentpage1() };
+                        this.toastr.success(" Votre supprition a été effectué avec succès")
                         return of(new GetAllfournisseurActions(aa));
                     }),
                     catchError((err) => {
@@ -82,7 +86,7 @@ export class fournisseurEffect {
             mergeMap((action: getfournisseurbycodesActions) =>
                 this.serviceFournisseurService.getFournisseurByCode(action.payload).pipe(
                     map((fournisseur: any) => {
-                        console.log(fournisseur.data.supplier);
+                    
                         return new getfournisseurbycodesActionsSuccess(fournisseur.data.supplier);
                     }),
                     catchError((err) => of(new getfournisseurbycodesActionsError(err.error.msg)))
@@ -94,9 +98,13 @@ export class fournisseurEffect {
         this.effectActions.pipe(
             ofType(fournisseurActionsTypes.modifier_fournisseur),
             mergeMap((action: modifierfournisseurActions) => {
+               
                 return this.serviceFournisseurService.updateFournisseur(action.payload).pipe(
 
-                    map((fournisseur) => new modifierfournisseurActionsSuccess(fournisseur)),
+                    map((fournisseur) =>{
+                        this.toastr.success("Votre modification a été effectué avec succès")
+                      return  new modifierfournisseurActionsSuccess(fournisseur)
+                    }),
                     catchError((err) => of(new modifierfournisseurActionsError(err.message)))
 
                 )

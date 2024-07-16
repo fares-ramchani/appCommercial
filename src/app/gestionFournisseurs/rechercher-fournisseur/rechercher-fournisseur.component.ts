@@ -9,6 +9,7 @@ import { GetAllfournisseurActions, getfournisseurbycodesActions, modifierfournis
 import { fournisseurState, fournisseurStateEnume, fournisseurStateModifier } from 'src/app/ngrx/ngrxfournisseur/fournisseur.reducer';
 import { ParamatrePaginationService } from 'src/app/services/paramatre-pagination.service';
 import { ServicefournisseurService } from 'src/app/services/servicefournisseur.service';
+import { ShowComposantAlertmodifierService } from 'src/app/services/show-composant-alertmodifier.service';
 import { ShowComposantrechercherFornisseurService } from 'src/app/services/show-composantrechercher-fornisseur.service';
 
 @Component({
@@ -28,10 +29,12 @@ export class RechercherFournisseurComponent implements OnDestroy {
   currentpage=1
   formfournisseurCompletee!: FormGroup;
   fournisseurComplete: Array<any> = []
+  showcomposantAlertmodifier: boolean = false
   paginationParamter: paginationParamter = { perPage: this.nombrefournisseurDansUnPage, page:1 }
   constructor(private ParamatrePaginationService:ParamatrePaginationService, private store: Store<any>,
      private ServicefournisseurService: ServicefournisseurService,
      private ShowComposantrechercherFornisseurService: ShowComposantrechercherFornisseurService,
+     private ShowComposantAlertmodifierService:ShowComposantAlertmodifierService,
      private fb: FormBuilder) {
       
       }
@@ -45,6 +48,9 @@ export class RechercherFournisseurComponent implements OnDestroy {
     this.fournisseurStatemodifeir$ = this.store.pipe(
       map((state) => state.fournisseurmodifierReducer)
     )
+    this.ShowComposantAlertmodifierService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertmodifier = data;
+    });
    
     
     this.getfournisseurParpagination(this.paginationParamter)
@@ -207,9 +213,8 @@ export class RechercherFournisseurComponent implements OnDestroy {
       option3 : this.option3
 
     }
-    
-    this.store.dispatch(new modifierfournisseurActions(fournisseurmodifier));
-    this.store.dispatch(new getfournisseurbycodesActions(fournisseurmodifier.code));
+    this.ShowComposantAlertmodifierService.setshowpopup()
+    this.ShowComposantAlertmodifierService.setSharedData(fournisseurmodifier)
     this.fournisseurState$?.subscribe((state) => {
       if(state.four){
         this.code=state.four.code

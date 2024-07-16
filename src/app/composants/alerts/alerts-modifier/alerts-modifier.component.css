@@ -1,14 +1,15 @@
 
+
 :host{
     display: flex;
     position: fixed;
     top: 0px;
-    left: 0px;
+    right: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(22, 21, 21, 0);
+    background-color: rgba(0, 0, 0, 0.5);
     align-items: center;
-    justify-content: start;
+    justify-content: center;
     overflow-y: auto;
 
 }
@@ -24,19 +25,11 @@
   border-color: orange;
 }
 #container{
-    width: 320px;
-    height: 100vh;
-    box-shadow: 5px 5px 6px #ccc;
+    width: 30%;
+    height: 30vh;
     border-radius: 5px;
-    background-color: #f3f4f6;
+    background-color: #fbfdff;
     overflow-y: auto;
-    background-image: url(../menu-principale/images/backgrounMenuPrincipale.jpg);
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-}
-#container::-webkit-scrollbar{
-  width: 0;
 }
 .error{
   background-color: red;color: white; position: fixed; margin-top: 3%; border-radius: 10px; width: 400px; text-align: center;
@@ -334,15 +327,15 @@
       
       }
       
-      .img1{
-        width: 65px;
-        height: 50px;
-    
-    }
+      img {
+        width: 20px;
+        height: 20px;
+      
+      
+      }
       .img{
         width: 40px;
         height: 40px;
-        margin-top: -5%;
         filter: none;
       }
       
@@ -383,12 +376,45 @@
         -webkit-user-select: none;
         touch-action: manipulation;
         vertical-align: middle;
-        min-width: 320px;
+        width: auto;
         word-break: keep-all;
         z-index: 0;
-        margin-bottom: 20px;
       }
-    
+      @media screen and (max-width:1024px) {
+        .partier{
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            overflow-x: scroll;
+            justify-content: start;
+        }
+        .partier::-webkit-scrollbar{
+          width: 0;
+        }
+        
+        .button-77 {
+          width: 35%;
+          margin-left:3% ;
+        }
+      }
+      @media screen and (max-width:550px) {
+        .partier{
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            overflow-x: scroll;
+            justify-content: start;
+        }
+        .partier::-webkit-scrollbar{
+          width: 0;
+        }
+        .button-77 {
+          width: 60%;
+          margin-left:3% ;
+        }
+      }
       
       
       
@@ -411,7 +437,7 @@
       
       .button-77:after {
     
-        background-color: rgba(118, 165, 241, 0.04);
+        background-color: rgba(27, 101, 205, 0.164);
         content: "";
         bottom: 4px;
         content: "";
@@ -432,7 +458,7 @@
         left: 0;
         right: 0;
         top: 0;
-        background-color: rgba(63, 124, 246, 0.158);
+        background-color: rgb(255, 255, 255);
         transition-timing-function: ease-in;
       }
       
@@ -450,20 +476,39 @@
         cursor: default;
         opacity: .24;
       }
-      .sideItem{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-      }
-      .contunueItem{
-        height: 80%;
-      }
-      .img10 {
-        width: 35px;
-        height: 35px;
-      
-      
-      }
+      .loader {
+        width: 70px;
+        height: 70px;
+        border: 5px solid #FFF;
+        border-bottom-color:#3c97bf;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+        margin-left: 8px;
+        }
+    
+        @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+        } 
+        mat-paginator{
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          
+        }
+        @keyframes fadeOut {
+          0% { opacity: 1; }
+          100% { opacity: 0; display: none; }
+        }
+        .hide-alert {
+          animation: fadeOut 1s ease-out 2s forwards;
+        }
 
 /* @media screen and (max-width:1024px) {
   .parent{

@@ -30,6 +30,8 @@ import { famille } from 'src/app/model/famille.model';
 import { ServicefamilleService } from 'src/app/services/servicefamille.service';
 import { familleState, familleStateEnume } from 'src/app/ngrx/ngrxfamille/famille.reducer';
 import { SavefamilleActions } from 'src/app/ngrx/ngrxfamille/famille.action';
+import { ToastrService } from 'ngx-toastr';
+import { ValidationFormulairService } from 'src/app/services/validation-formulair.service';
 
 @Component({
   selector: 'app-side-bar-option',
@@ -37,6 +39,7 @@ import { SavefamilleActions } from 'src/app/ngrx/ngrxfamille/famille.action';
   styleUrls: ['./side-bar-option.component.css']
 })
 export class SideBarOptionComponent {
+  validationFormulair:any
  urlactuell:any
   fournisseurData: fournisseurComplete | null = null;
   clientData: clientComplete | null = null;
@@ -66,7 +69,8 @@ export class SideBarOptionComponent {
     private ShowComposantrecherchefamilleService: ShowComposantrecherchefamilleService,
     private ShowComposantsupprimerfamilleService: ShowComposantsupprimerfamilleService,
     private ServicefamilleService:ServicefamilleService,
-    
+    private ValidationFormulairService:ValidationFormulairService,
+    private toastr:ToastrService,
     private router: Router) { }
 
   closepopup() {
@@ -120,19 +124,37 @@ export class SideBarOptionComponent {
       const data = this.fournisseurData
       const formattedData = { ...data?.fournisseur, ...data }
       const { fournisseur, ...other } = formattedData
-      this.store.dispatch(new SavefournisseurActions(other));
+      if(this.validationFormulair){
+        this.store.dispatch(new SavefournisseurActions(other));
+        this.ValidationFormulairService.setvalidationFormuliare(false)
+      }else{
+        this.toastr.error("code or companyName invalide !")
+      }
+   
     }else if (this.urlactuell.startsWith("/Registrationclient")) {
       const data = this.clientData
       const formattedData = { ...data?.client, ...data }
       const { client, ...other } = formattedData
-      this.store.dispatch(new SaveclientActions(other));
+      
+      if(this.validationFormulair){
+        this.store.dispatch(new SaveclientActions(other));
+        this.ValidationFormulairService.setvalidationFormuliare(false)
+      }else{
+        this.toastr.error("code or companyName invalide !")
+      }
 
     }
     else if (this.urlactuell.startsWith("/Registrationmagasin")) {
       // const data = this.magasinData
       // const formattedData = { ...data?.client, ...data }
       // const { client, ...other } = formattedData
-      this.store.dispatch(new SavemagasinActions(this.magasinData));
+      // this.store.dispatch(new SavemagasinActions(this.magasinData));
+      if(this.validationFormulair){
+        this.store.dispatch(new SavemagasinActions(this.magasinData));
+        this.ValidationFormulairService.setvalidationFormuliare(false)
+      }else{
+        this.toastr.error("code or magasinName invalide !")
+      }
     
 
     }
@@ -140,14 +162,22 @@ export class SideBarOptionComponent {
       // const data = this.magasinData
       // const formattedData = { ...data?.client, ...data }
       // const { client, ...other } = formattedData
-      this.store.dispatch(new SavefamilleActions(this.familleData));
-    
+      // 
+      if(this.validationFormulair){
+        this.store.dispatch(new SavefamilleActions(this.familleData));
+        this.ValidationFormulairService.setvalidationFormuliare(false)
+      }else{
+        this.toastr.error("code or familleName invalide !")
+      }
 
     }
   
   }
   ngOnInit(): void {
      this.urlactuell = this.router.url;
+     this.ValidationFormulairService.validationFormuliare$.subscribe(data => {
+      this.validationFormulair = data;
+    });
     if (this.urlactuell.startsWith("/RegistrationFournisseur")) {
       this.FounisseurState$=this.store.pipe(
         map((state)=>state.fournisseurSaveReducer )

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as moment from 'moment';
 import { Observable, map } from 'rxjs';
@@ -9,6 +9,7 @@ import { ServicefamilleService } from 'src/app/services/servicefamille.service';
 import { ShowComposantimprimerfamilleService } from 'src/app/services/show-composantimprimerfamille.service';
 import { ShowComposantrecherchefamilleService } from 'src/app/services/show-composantrecherchefamille.service';
 import { ShowComposantsupprimerfamilleService } from 'src/app/services/show-composantsupprimerfamille.service';
+import { ValidationFormulairService } from 'src/app/services/validation-formulair.service';
 
 @Component({
   selector: 'app-registrationfamilles',
@@ -31,6 +32,7 @@ export class RegistrationfamillesComponent {
     private ShowComposantrecherchefamilleService: ShowComposantrecherchefamilleService,
     private ShowComposantsupprimerfamilleService: ShowComposantsupprimerfamilleService,
     private ServicefamilleService: ServicefamilleService,
+    private ValidationFormulairService:ValidationFormulairService,
     private store:Store<any>,
   ) {
     this.currentDate = moment().format('YYYY-MM-DD');
@@ -44,8 +46,8 @@ export class RegistrationfamillesComponent {
       map((state)=>state.familleSaveReducer )
     )
     this.formfamille = this.fb.group({
-      code: this.fb.control(''),
-      familyLabel: this.fb.control(''),
+      code: this.fb.control('',Validators.required),
+      familyLabel: this.fb.control('',Validators.required),
       isProfitMargin: this.fb.control(false),
       priceCalculationOn: this.fb.control(''),
       minimumViablePriceOn: this.fb.control(''),
@@ -104,6 +106,7 @@ export class RegistrationfamillesComponent {
         }
       }
       this.ServicefamilleService.updatefamilleData(formData);
+      this.ValidationFormulairService.setvalidationFormuliare(this.formfamille.valid)
     });
     this.ShowComposantimprimerfamilleService.showPopup1$.subscribe((inputData) => {
       this.showcomposantImprimer = inputData
@@ -117,6 +120,22 @@ export class RegistrationfamillesComponent {
       this.showcomposantsupprimer = inputData
 
     });
+  }
+  getErrorsMessage(arg0: string,error: any):string {
+    if(error['required']){
+      return arg0+ " obligatoir";
+    }else if(error['email']){
+      return "email invalid"
+    }
+    else if(error['min']){
+      return  "telephone invalid"
+    }
+    else if(error['max']){
+      return  "telephone invalid"
+    }
+    else return "";
+    
+  
   }
  
 }

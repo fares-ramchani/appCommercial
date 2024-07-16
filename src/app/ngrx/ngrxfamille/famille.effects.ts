@@ -4,12 +4,14 @@ import { Observable, catchError, map, mergeMap, of } from "rxjs";
 import { ParamatrePaginationClientService } from "src/app/services/paramatre-pagination-client.service";
 import { ServicefamilleService } from "src/app/services/servicefamille.service";
 import { DeletefamilleActions, DeletefamilleActionsError, GetAllfamilleActionsSuccess, GetAllfamilletActions, GetAllfamilletActionsError, SavefamilleActions, SavefamilleActionsError, SavefamilleActionsSuccess, familleActions, familleActionsTypes, getfamillebycodesActions, getfamillebycodesActionsError, getfamillebycodesActionsSuccess, imprimerfamilleActions, imprimerfamilleActionsError, imprimerfamilleActionsSuccess, modifierfamilleActions, modifierfamilleActionsError, modifierfamilleActionsSuccess } from "./famille.action";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class familleEffect {
     constructor(
         private ParamatrePaginationClientService:ParamatrePaginationClientService,
         private ServicefamilleService: ServicefamilleService,
+        private toastr:ToastrService,
         private effectActions: Actions
     ) { }
 
@@ -34,6 +36,7 @@ export class familleEffect {
                 return this.ServicefamilleService.deletefamilleByCode(action.payload).pipe(
                     mergeMap(() => {
                         const aa = { perPage: 10, page: 1 };
+                        this.toastr.success(" Votre supprition a été effectué avec succès")
                         return of(new GetAllfamilletActions(aa));
                     }),
                     catchError((err) => {
@@ -75,9 +78,13 @@ export class familleEffect {
         this.effectActions.pipe(
             ofType(familleActionsTypes.modifier_famille),
             mergeMap((action: modifierfamilleActions) => {
+               
                 return this.ServicefamilleService.updatefamille(action.payload).pipe(
 
-                    map((famille) => new modifierfamilleActionsSuccess(famille)),
+                    map((famille) => {
+                        this.toastr.success("Votre modification a été effectué avec succès")
+                        return new modifierfamilleActionsSuccess(famille)
+                    }),
                     catchError((err) => of(new modifierfamilleActionsError(err.message)))
 
                 )

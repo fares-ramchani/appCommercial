@@ -8,6 +8,7 @@ import { GetAllclientActions, getclientbycodesActions, modifierclientActions } f
 import { clientState, clientStateEnume, clientStateModifier } from 'src/app/ngrx/ngrxclient/client.reducer';
 import { ParamatrePaginationClientService } from 'src/app/services/paramatre-pagination-client.service';
 import { ServiceclientService } from 'src/app/services/serviceclient.service';
+import { ShowComposantAlertmodifierService } from 'src/app/services/show-composant-alertmodifier.service';
 import { ShowComposantrechercherclientService } from 'src/app/services/show-composantrechercherclient.service';
 
 @Component({
@@ -27,10 +28,12 @@ export class RechercherclientComponent {
   currentpage=1
   formclientCompletee!: FormGroup;
   clientComplete: Array<any> = []
+  showcomposantAlertmodifier: boolean = false
   paginationParamter: paramatrePaginationClient = { perPage: this.nombreclientDansUnPage, page:1 }
   constructor(private ParamatrePaginationService:ParamatrePaginationClientService, private store: Store<any>,
      private ServicefournisseurService: ServiceclientService,
      private ShowComposantrechercherclientService: ShowComposantrechercherclientService,
+     private ShowComposantAlertmodifierService:ShowComposantAlertmodifierService,
      private fb: FormBuilder) {
       
       }
@@ -44,6 +47,9 @@ export class RechercherclientComponent {
     this.clientStatemodifeir$ = this.store.pipe(
       map((state) => state.fournisseurmodifierReducer)
     )
+    this.ShowComposantAlertmodifierService.showPopup1$.subscribe(data => {
+      this.showcomposantAlertmodifier = data;
+    });
    
     
     this.getclientParpagination(this.paginationParamter)
@@ -206,9 +212,10 @@ export class RechercherclientComponent {
       option3 : this.option3
 
     }
+    this.ShowComposantAlertmodifierService.setshowpopup()
+    this.ShowComposantAlertmodifierService.setSharedData(clientmodifier)
     
-    this.store.dispatch(new modifierclientActions(clientmodifier));
-    this.store.dispatch(new getclientbycodesActions(clientmodifier.code));
+    
     this.clientState$?.subscribe((state) => {
       if(state.four){
         this.code=state.four.code
